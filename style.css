@@ -1,821 +1,87 @@
-/* =========================================================
-   FASTBITE POS — FINAL RESPONSIVE CSS
-   Exact match for the supplied FastBite POS HTML
-   Desktop + Tablet + Mobile
-   ========================================================= */
-
-* {
-    box-sizing: border-box;
-}
-
-html,
-body {
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    font-family: "Inter", sans-serif;
-}
-
-body {
-    overflow: hidden;
-}
-
-button,
-input {
-    font-family: inherit;
-}
-
-button {
-    cursor: pointer;
-}
-
-/* ---------- SCROLLBAR ---------- */
-
-.custom-scrollbar {
-    scrollbar-width: thin;
-    scrollbar-color: #d1d5db transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
-}
-
-.custom-scrollbar::-webkit-scrollbar-track {
-    background: transparent;
-}
-
-.custom-scrollbar::-webkit-scrollbar-thumb {
-    background: #d1d5db;
-    border-radius: 10px;
-}
-
-/* ---------- ANIMATIONS ---------- */
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(8px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.animate-fadeIn {
-    animation: fadeIn 0.25s ease-out;
-}
-
-/* =========================================================
-   LOGIN SCREEN
-   ========================================================= */
-
-.fb3d-login {
-    position: fixed;
-    inset: 0;
-    z-index: 9999;
-    width: 100%;
-    height: 100dvh;
-    overflow: hidden;
-    background:
-        radial-gradient(circle at 50% 25%, #fff7ed 0%, transparent 38%),
-        linear-gradient(135deg, #111827, #1f2937 55%, #111827);
-}
-
-.fb3d-world {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    min-height: 100dvh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    perspective: 1400px;
-    overflow: hidden;
-}
-
-.fb3d-ambient {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(80px);
-    pointer-events: none;
-}
-
-.fb3d-ambient-a {
-    width: 420px;
-    height: 420px;
-    top: -150px;
-    left: -120px;
-    background: rgba(249, 115, 22, 0.35);
-}
-
-.fb3d-ambient-b {
-    width: 500px;
-    height: 500px;
-    right: -180px;
-    bottom: -220px;
-    background: rgba(251, 146, 60, 0.18);
-}
-
-.fb3d-floor-grid {
-    position: absolute;
-    width: 140%;
-    height: 55%;
-    bottom: -28%;
-    left: -20%;
-    opacity: 0.12;
-    background-image:
-        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
-    background-size: 55px 55px;
-    transform: perspective(500px) rotateX(65deg);
-}
-
-/* ---------- FLOATING ELEMENTS ---------- */
-
-.fb3d-floating {
-    position: absolute;
-    z-index: 2;
-    color: white;
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.12);
-    backdrop-filter: blur(12px);
-    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
-    pointer-events: none;
-}
-
-.fb3d-float-ticket {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    padding: 13px 16px;
-    border-radius: 12px;
-    font-size: 10px;
-    letter-spacing: 0.08em;
-}
-
-.fb3d-float-ticket b {
-    color: #fb923c;
-    font-size: 9px;
-}
-
-.fb3d-float-1 {
-    left: 8%;
-    top: 22%;
-    transform: rotate(-8deg);
-}
-
-.fb3d-float-2 {
-    right: 7%;
-    top: 28%;
-    transform: rotate(8deg);
-}
-
-.fb3d-float-chip {
-    padding: 10px 14px;
-    border-radius: 999px;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-}
-
-.fb3d-float-3 {
-    left: 10%;
-    bottom: 25%;
-}
-
-.fb3d-float-4 {
-    right: 10%;
-    bottom: 21%;
-}
-
-/* =========================================================
-   3D TERMINAL
-   ========================================================= */
-
-.fb3d-terminal {
-    position: relative;
-    z-index: 5;
-    width: min(680px, 68vw);
-    transform-style: preserve-3d;
-    transform: rotateX(2deg) rotateY(-4deg);
-    filter: drop-shadow(0 45px 45px rgba(0,0,0,0.35));
-}
-
-.fb3d-terminal-top {
-    height: 42px;
-    padding: 0 18px;
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    color: #d1d5db;
-    background: linear-gradient(180deg, #374151, #1f2937);
-    border-radius: 18px 18px 0 0;
-    border: 1px solid #4b5563;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-}
-
-.fb3d-led {
-    width: 8px;
-    height: 8px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 12px rgba(34,197,94,0.8);
-}
-
-.fb3d-terminal-code {
-    margin-left: auto;
-    opacity: 0.5;
-    font-size: 8px;
-}
-
-.fb3d-terminal-body {
-    padding: 14px;
-    background: linear-gradient(145deg, #374151, #111827);
-    border-left: 1px solid #4b5563;
-    border-right: 1px solid #4b5563;
-}
-
-.fb3d-terminal-screen {
-    position: relative;
-    overflow: hidden;
-    border-radius: 12px;
-    background: #fff;
-    box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,0.08),
-        0 5px 20px rgba(0,0,0,0.3);
-}
-
-.fb3d-screen-depth {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background:
-        linear-gradient(110deg, rgba(255,255,255,0.4), transparent 25%),
-        linear-gradient(180deg, rgba(249,115,22,0.03), transparent);
-}
-
-.fb3d-screen-ui {
-    position: relative;
-    padding: 38px 46px 30px;
-}
-
-.fb3d-screen-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 18px;
-}
-
-.fb3d-logo-3d {
-    width: 42px;
-    height: 42px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 12px;
-    color: white;
-    font-size: 22px;
-    font-weight: 800;
-    background: linear-gradient(145deg, #fb923c, #ea580c);
-    box-shadow:
-        0 7px 0 #c2410c,
-        0 12px 20px rgba(234,88,12,0.25);
-}
-
-.fb3d-screen-brand strong {
-    display: block;
-    color: #1f2937;
-    font-size: 17px;
-    line-height: 1;
-    letter-spacing: -0.02em;
-}
-
-.fb3d-screen-brand strong span {
-    color: #ea580c;
-}
-
-.fb3d-screen-brand small {
-    display: block;
-    margin-top: 4px;
-    color: #9ca3af;
-    font-size: 7px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-}
-
-.fb3d-access-line {
-    display: flex;
-    align-items: center;
-    gap: 7px;
-    margin-bottom: 12px;
-    color: #f97316;
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 0.13em;
-}
-
-.fb3d-access-line span {
-    width: 6px;
-    height: 6px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: #22c55e;
-    box-shadow: 0 0 8px rgba(34,197,94,0.7);
-}
-
-.fb3d-screen-ui h1 {
-    margin: 0;
-    color: #111827;
-    font-size: 28px;
-    line-height: 1.15;
-    letter-spacing: -0.04em;
-}
-
-.fb3d-subtitle {
-    margin: 7px 0 25px;
-    color: #6b7280;
-    font-size: 11px;
-}
-
-.fb3d-form {
-    width: 100%;
-}
-
-.fb3d-field {
-    margin-bottom: 15px;
-}
-
-.fb3d-field label {
-    display: block;
-    margin-bottom: 6px;
-    color: #9ca3af;
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 0.13em;
-}
-
-.fb3d-input {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.fb3d-input > i {
-    position: absolute;
-    left: 13px;
-    color: #9ca3af;
-    font-size: 12px;
-    pointer-events: none;
-}
-
-.fb3d-input input {
-    width: 100%;
-    height: 44px;
-    padding: 0 42px;
-    color: #1f2937;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    outline: none;
-    font-size: 11px;
-    transition: 0.2s ease;
-}
-
-.fb3d-input input:focus {
-    background: white;
-    border-color: #f97316;
-    box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
-}
-
-.fb3d-input button {
-    position: absolute;
-    right: 11px;
-    border: 0;
-    background: transparent;
-    color: #9ca3af;
-    padding: 5px;
-}
-
-.fb3d-error {
-    margin: 8px 0;
-    color: #ef4444;
-    font-size: 9px;
-    font-weight: 700;
-}
-
-.fb3d-submit {
-    width: 100%;
-    height: 45px;
-    margin-top: 4px;
-    border: 0;
-    border-radius: 10px;
-    color: white;
-    background: linear-gradient(135deg, #f97316, #ea580c);
-    box-shadow: 0 10px 20px rgba(234,88,12,0.22);
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.08em;
-    transition: 0.2s ease;
-}
-
-.fb3d-submit:hover {
-    transform: translateY(-1px);
-}
-
-.fb3d-submit:active {
-    transform: translateY(1px);
-}
-
-.fb3d-submit:disabled {
-    cursor: not-allowed;
-    opacity: 0.75;
-}
-
-.fb3d-screen-footer {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-top: 23px;
-    padding-top: 14px;
-    border-top: 1px solid #f3f4f6;
-    color: #9ca3af;
-    font-size: 7px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-}
-
-/* ---------- TERMINAL CONTROLS ---------- */
-
-.fb3d-terminal-controls {
-    height: 45px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 0 16px;
-    background: linear-gradient(180deg, #1f2937, #111827);
-    border-left: 1px solid #4b5563;
-    border-right: 1px solid #4b5563;
-}
-
-.fb3d-terminal-controls > span:not(.fb3d-control-wide) {
-    width: 8px;
-    height: 8px;
-    flex-shrink: 0;
-    border-radius: 50%;
-    background: #6b7280;
-}
-
-.fb3d-terminal-controls b {
-    margin-left: 8px;
-    color: #6b7280;
-    font-size: 7px;
-    letter-spacing: 0.15em;
-}
-
-.fb3d-control-wide {
-    width: 70px;
-    height: 7px;
-    margin-left: auto;
-    border-radius: 5px;
-    background: #374151;
-}
-
-.fb3d-terminal-base {
-    height: 18px;
-    background: linear-gradient(180deg, #4b5563, #1f2937);
-    border-radius: 0 0 22px 22px;
-    border: 1px solid #4b5563;
-    transform: translateZ(-8px);
-}
-
-/* ---------- LOGIN STATES USED BY SCRIPT ---------- */
-
-.fb3d-login.fb3d-auth .fb3d-terminal {
-    animation: fbAuthPulse 0.65s ease-in-out;
-}
-
-.fb3d-login.fb3d-success {
-    animation: fbLoginSuccess 0.65s ease-in forwards;
-}
-
-@keyframes fbAuthPulse {
-    0%, 100% { transform: rotateX(2deg) rotateY(-4deg) scale(1); }
-    50% { transform: rotateX(2deg) rotateY(-4deg) scale(1.015); }
-}
-
-@keyframes fbLoginSuccess {
-    from { opacity: 1; }
-    to { opacity: 0; visibility: hidden; }
-}
-
-/* ---------- BURGER ---------- */
-
-.fb3d-side-object {
-    position: absolute;
-    z-index: 3;
-    pointer-events: none;
-}
-
-.fb3d-burger {
-    width: 100px;
-    height: 120px;
-    right: 8%;
-    bottom: 12%;
-    transform: rotate(-10deg);
-}
-
-.fb3d-bun,
-.fb3d-lettuce,
-.fb3d-cheese,
-.fb3d-patty,
-.fb3d-tomato {
-    position: absolute;
-    left: 0;
-    width: 100%;
-}
-
-.fb3d-bun-top {
-    top: 0;
-    height: 45px;
-    border-radius: 50% 50% 18% 18%;
-    background: linear-gradient(#fbbf74, #d97706);
-}
-
-.fb3d-lettuce {
-    top: 38px;
-    height: 10px;
-    border-radius: 50%;
-    background: #65a30d;
-}
-
-.fb3d-cheese {
-    top: 46px;
-    height: 10px;
-    background: #facc15;
-}
-
-.fb3d-patty {
-    top: 55px;
-    height: 20px;
-    border-radius: 5px;
-    background: #7c2d12;
-}
-
-.fb3d-tomato {
-    top: 74px;
-    height: 10px;
-    background: #ef4444;
-}
-
-.fb3d-bun-bottom {
-    top: 82px;
-    height: 28px;
-    border-radius: 12% 12% 40% 40%;
-    background: linear-gradient(#f59e0b, #b45309);
-}
-
-/* ---------- FRIES ---------- */
-
-.fb3d-fries {
-    width: 80px;
-    height: 105px;
-    left: 8%;
-    bottom: 12%;
-}
-
-.fb3d-fries i {
-    position: absolute;
-    top: 0;
-    width: 11px;
-    height: 55px;
-    border-radius: 4px;
-    background: #facc15;
-    transform: rotate(-8deg);
-}
-
-.fb3d-fries i:nth-child(1) {
-    left: 10px;
-    height: 62px;
-}
-
-.fb3d-fries i:nth-child(2) {
-    left: 25px;
-    height: 70px;
-}
-
-.fb3d-fries i:nth-child(3) {
-    left: 40px;
-    height: 63px;
-}
-
-.fb3d-fries i:nth-child(4) {
-    left: 55px;
-    height: 68px;
-}
-
-.fb3d-fries i:nth-child(5) {
-    left: 67px;
-    height: 57px;
-}
-
-.fb3d-fries > div {
-    position: absolute;
-    left: 10px;
-    top: 48px;
-    width: 65px;
-    height: 55px;
-    border-radius: 6px 6px 16px 16px;
-    background: linear-gradient(135deg, #ef4444, #b91c1c);
-}
-
-/* ---------- CAPTION ---------- */
-
-.fb3d-caption {
-    position: absolute;
-    left: 50%;
-    bottom: 3%;
-    transform: translateX(-50%);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: rgba(255,255,255,0.4);
-    font-size: 8px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    white-space: nowrap;
-}
-
-.fb3d-caption-line {
-    width: 35px;
-    height: 1px;
-    background: rgba(255,255,255,0.25);
-}
-
-/* =========================================================
-   POS NAVIGATION
-   ========================================================= */
-
-nav.no-print {
-    min-height: 68px;
-    flex-shrink: 0;
-}
-
-nav.no-print input {
-    max-width: 320px;
-}
-
-/* =========================================================
-   MAIN POS STRUCTURE
-   ========================================================= */
-
-body > .flex.flex-1 {
-    min-height: 0;
-    flex: 1 1 auto;
-}
-
-#category-sidebar {
-    min-width: 96px;
-    flex-shrink: 0;
-}
-
-#category-sidebar > * {
-    max-width: 82px;
-}
-
-main {
-    min-width: 0;
-    min-height: 0;
-    flex: 1 1 auto;
-}
-
-main > * {
-    min-width: 0;
-}
-
-/* Menu grid */
-
-#menu-grid {
-    width: 100%;
-}
-
-#menu-grid > * {
-    min-width: 0;
-}
-
-/* =========================================================
-   CART / RIGHT SIDEBAR
-   ========================================================= */
-
-body > .flex.flex-1 > aside:last-child {
-    min-width: 384px;
-    max-width: 384px;
-    flex: 0 0 384px;
-}
-
-#cart-container {
-    min-height: 0;
-}
-
-/* =========================================================
-   PRINT
-   ========================================================= */
-
-.print-only {
-    display: none;
-}
-
-@media print {
-    html,
-    body {
-        width: auto !important;
-        height: auto !important;
-    }
-
-    body {
-        overflow: visible !important;
-        background: white !important;
-    }
-
-    .no-print,
-    #app-login,
-    #upi-payment-modal,
-    #success-modal {
-        display: none !important;
-    }
-
-    .print-only {
-        display: block !important;
-    }
-}
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 1100px) {
-
-    nav.no-print {
-        padding-left: 18px;
-        padding-right: 18px;
-    }
-
-    nav.no-print .gap-8 {
-        gap: 15px;
-    }
-
-    #category-sidebar {
-        width: 78px;
-        min-width: 78px;
-        padding-left: 5px;
-        padding-right: 5px;
-    }
-
-    main {
-        padding: 18px;
-    }
-
-    body > .flex.flex-1 > aside:last-child {
-        min-width: 330px;
-        max-width: 330px;
-        flex-basis: 330px;
-    }
-
-    #menu-grid {
-        gap: 14px;
-    }
-}
-
-/* =========================================================
-   MOBILE — COMPLETE POS REWORK
-   ========================================================= */
-
+body { font-family: 'Inter', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 10px; }
+        .menu-card:hover { transform: translateY(-4px); transition: all 0.3s ease; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fadeIn { animation: fadeIn 0.3s ease-out forwards; }
+
+        /* Print Styles */
+        @media print {
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white; height: auto; overflow: visible; }
+        }
+        .print-only { display: none; }
+
+
+/* ================================================================
+   FASTBITE 3D LOGIN
+   Only the login layer uses these styles. The POS styles remain intact.
+   ================================================================ */
+.fb3d-login{position:fixed;inset:0;z-index:200;overflow:hidden;background:#090807;color:#f7f3ed;perspective:1800px;isolation:isolate}
+.fb3d-world{position:absolute;inset:-5%;transform-style:preserve-3d;transition:transform .25s ease-out;will-change:transform;background:radial-gradient(circle at 50% 38%,rgba(246,112,22,.14),transparent 28%),radial-gradient(circle at 78% 24%,rgba(255,166,76,.09),transparent 20%),#090807}
+.fb3d-ambient{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;transform:translateZ(-180px)}
+.fb3d-ambient-a{width:35vw;height:35vw;left:-10vw;top:10vh;background:rgba(255,98,18,.16)}
+.fb3d-ambient-b{width:30vw;height:30vw;right:-5vw;bottom:-10vh;background:rgba(255,155,65,.11)}
+.fb3d-floor-grid{position:absolute;left:-10%;right:-10%;bottom:-34%;height:70%;transform:rotateX(68deg) translateZ(-180px);transform-origin:center top;background-image:linear-gradient(rgba(255,143,53,.12) 1px,transparent 1px),linear-gradient(90deg,rgba(255,143,53,.12) 1px,transparent 1px);background-size:70px 70px;mask-image:linear-gradient(to bottom,transparent,black 35%,transparent);opacity:.55}
+.fb3d-terminal{position:absolute;left:50%;top:50%;width:min(620px,78vw);height:720px;transform:translate(-50%,-48%) rotateX(7deg) rotateY(-7deg) translateZ(70px);transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),filter .4s;filter:drop-shadow(0 45px 35px rgba(0,0,0,.55));animation:fb3d-float 6s ease-in-out infinite}
+.fb3d-terminal-top{height:42px;background:linear-gradient(135deg,#24201c,#11100f);border:1px solid rgba(255,255,255,.12);border-bottom:0;border-radius:28px 28px 0 0;display:flex;align-items:center;padding:0 22px;gap:9px;font:700 10px/1 Inter,sans-serif;letter-spacing:.16em;color:#a9a39b;transform:translateZ(20px);box-shadow:inset 0 1px rgba(255,255,255,.08)}
+.fb3d-terminal-code{margin-left:auto;color:#665f57;font-size:8px}
+.fb3d-led{width:7px;height:7px;border-radius:50%;background:#ff741f;box-shadow:0 0 12px #ff741f;animation:fb3d-pulse 1.8s infinite}
+.fb3d-terminal-body{position:relative;height:610px;padding:16px;background:linear-gradient(145deg,#302a25,#121110 55%,#25201d);border:1px solid rgba(255,255,255,.12);box-shadow:inset 0 1px rgba(255,255,255,.08),inset 0 -20px 35px rgba(0,0,0,.28);transform:translateZ(12px);transform-style:preserve-3d}
+.fb3d-terminal-screen{position:relative;height:545px;border-radius:17px;background:#0d0c0b;border:8px solid #191715;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08),0 14px 24px rgba(0,0,0,.45);overflow:hidden;transform:translateZ(26px);transform-style:preserve-3d}
+.fb3d-terminal-screen:before{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(255,255,255,.09),transparent 20%,transparent 75%,rgba(255,119,36,.05));pointer-events:none;z-index:4}
+.fb3d-screen-depth{position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(255,111,30,.12),transparent 38%),linear-gradient(160deg,#171310,#080807 65%);transform:translateZ(-12px) scale(1.03)}
+.fb3d-screen-ui{position:relative;z-index:5;height:100%;padding:34px 48px;display:flex;flex-direction:column;justify-content:center;transform:translateZ(8px)}
+.fb3d-screen-brand{display:flex;align-items:center;gap:12px;margin-bottom:25px}.fb3d-logo-3d{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(145deg,#ff8c32,#d94d0b);box-shadow:inset 0 1px rgba(255,255,255,.35),0 8px 20px rgba(232,81,10,.25);transform:rotate(-5deg) translateZ(8px);font-size:20px;font-weight:900}.fb3d-screen-brand strong{display:block;font:800 19px/1 Inter,sans-serif;letter-spacing:-.04em}.fb3d-screen-brand strong span{color:#ff7626}.fb3d-screen-brand small{display:block;margin-top:5px;color:#77716a;font:700 7px/1 Inter,sans-serif;letter-spacing:.2em}
+.fb3d-access-line{font:700 8px/1 Inter,sans-serif;letter-spacing:.16em;color:#77716b;margin-bottom:14px}.fb3d-access-line span{display:inline-block;width:6px;height:6px;border-radius:50%;background:#ff7626;box-shadow:0 0 10px #ff7626;margin-right:7px}
+.fb3d-screen-ui h1{font:700 clamp(28px,4vw,38px)/1.05 Inter,sans-serif;letter-spacing:-.05em;margin:0}.fb3d-subtitle{color:#77716a;font:400 11px/1.5 Inter,sans-serif;margin:9px 0 25px}
+.fb3d-form{display:grid;gap:16px}.fb3d-field label{display:block;color:#7d766f;font:800 7px/1 Inter,sans-serif;letter-spacing:.17em;margin:0 0 7px}.fb3d-input{height:47px;border:1px solid rgba(255,255,255,.1);background:#141210;border-radius:11px;display:flex;align-items:center;padding:0 13px;gap:10px;box-shadow:inset 0 1px rgba(255,255,255,.035);transition:.2s}.fb3d-input:focus-within{border-color:rgba(255,117,38,.65);box-shadow:0 0 0 3px rgba(255,117,38,.08),inset 0 1px rgba(255,255,255,.05)}.fb3d-input i{color:#6c655e;font-size:12px}.fb3d-input input{width:100%;border:0;outline:0;background:transparent;color:#f4eee8;font:500 12px Inter,sans-serif}.fb3d-input input::placeholder{color:#55504b}.fb3d-input button{border:0;background:transparent;color:#6c655e;cursor:pointer}.fb3d-error{margin:0;color:#ff8161;background:rgba(255,79,44,.08);border:1px solid rgba(255,79,44,.2);border-radius:9px;padding:9px;font:700 9px/1.3 Inter,sans-serif}.fb3d-submit{height:49px;border:0;border-radius:12px;cursor:pointer;color:#fff;background:linear-gradient(135deg,#ff8731,#e24d0d);font:800 10px/1 Inter,sans-serif;letter-spacing:.12em;box-shadow:0 12px 24px rgba(226,77,13,.24),inset 0 1px rgba(255,255,255,.3);transition:transform .15s,box-shadow .15s}.fb3d-submit:hover{transform:translateY(-2px) translateZ(8px);box-shadow:0 18px 30px rgba(226,77,13,.32),inset 0 1px rgba(255,255,255,.3)}.fb3d-submit:active{transform:translateY(1px)}.fb3d-submit:disabled{opacity:.85;cursor:wait}.fb3d-screen-footer{display:flex;justify-content:space-between;margin-top:22px;color:#4f4a45;font:700 7px/1 Inter,sans-serif;letter-spacing:.08em}.fb3d-screen-footer i{color:#ff7626;margin-right:5px}
+.fb3d-terminal-controls{height:49px;display:flex;align-items:center;gap:9px;padding:0 18px;color:#625a52}.fb3d-terminal-controls>span:not(.fb3d-control-wide){width:8px;height:8px;border-radius:50%;background:#4c4640;box-shadow:inset 0 1px rgba(255,255,255,.1)}.fb3d-terminal-controls b{font:800 7px Inter,sans-serif;letter-spacing:.18em;margin-left:5px}.fb3d-control-wide{margin-left:auto;width:100px;height:6px;border-radius:8px;background:#443d37}
+.fb3d-terminal-base{position:absolute;left:7%;right:7%;bottom:-35px;height:45px;background:linear-gradient(#211d19,#0d0c0b);border:1px solid rgba(255,255,255,.08);border-radius:0 0 24px 24px;transform:translateZ(-5px) rotateX(-10deg);box-shadow:0 30px 35px rgba(0,0,0,.45)}
+.fb3d-floating{position:absolute;z-index:2;transform-style:preserve-3d;pointer-events:none}.fb3d-float-ticket{width:150px;padding:13px 15px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:linear-gradient(145deg,rgba(34,30,26,.92),rgba(14,13,12,.92));box-shadow:0 20px 40px rgba(0,0,0,.25);font:700 8px Inter,sans-serif;letter-spacing:.08em}.fb3d-float-ticket span{display:block;color:#9d958c}.fb3d-float-ticket b{display:block;margin-top:7px;color:#ff7a2b;font-size:7px}.fb3d-float-1{left:calc(50% - 455px);top:22%;transform:translateZ(170px) rotateY(18deg) rotateZ(-5deg);animation:fb3d-card1 5s ease-in-out infinite}.fb3d-float-2{right:calc(50% - 455px);top:31%;transform:translateZ(120px) rotateY(-18deg) rotateZ(5deg);animation:fb3d-card2 6s ease-in-out infinite}.fb3d-float-chip{padding:9px 12px;border:1px solid rgba(255,117,38,.25);border-radius:999px;background:rgba(255,117,38,.07);color:#ff8b4a;font:800 7px Inter,sans-serif;letter-spacing:.1em;box-shadow:0 12px 30px rgba(0,0,0,.2)}.fb3d-float-3{left:calc(50% - 410px);bottom:27%;transform:translateZ(190px) rotateY(15deg);animation:fb3d-card2 5.5s ease-in-out infinite}.fb3d-float-4{right:calc(50% - 405px);bottom:23%;transform:translateZ(150px) rotateY(-15deg);animation:fb3d-card1 5.8s ease-in-out infinite}
+.fb3d-side-object{position:absolute;transform-style:preserve-3d;pointer-events:none}.fb3d-burger{left:calc(50% - 480px);bottom:15%;width:105px;height:115px;transform:translateZ(210px) rotateY(25deg) rotateZ(-9deg);animation:fb3d-food 6s ease-in-out infinite;filter:drop-shadow(0 24px 20px rgba(0,0,0,.4))}.fb3d-bun,.fb3d-patty,.fb3d-cheese,.fb3d-lettuce,.fb3d-tomato{position:absolute;left:5%;width:90%;border-radius:50%;box-shadow:inset 0 -7px 0 rgba(0,0,0,.12),inset 0 5px 8px rgba(255,255,255,.16)}.fb3d-bun-top{top:0;height:43px;background:linear-gradient(#e99a45,#b95719);border-radius:55% 55% 35% 35%}.fb3d-lettuce{top:39px;height:12px;background:#5f9a3e}.fb3d-cheese{top:48px;height:12px;background:#f5c83b;clip-path:polygon(0 0,100% 0,88% 100%,62% 45%,34% 100%,12% 45%)}.fb3d-patty{top:57px;height:24px;background:linear-gradient(#59321f,#2c1810)}.fb3d-tomato{top:76px;height:10px;background:#d54832}.fb3d-bun-bottom{top:85px;height:27px;background:linear-gradient(#d2772e,#914417);border-radius:25% 25% 50% 50%}.fb3d-fries{right:calc(50% - 500px);bottom:17%;width:88px;height:120px;transform:translateZ(200px) rotateY(-22deg) rotateZ(8deg);animation:fb3d-food 6.5s ease-in-out infinite}.fb3d-fries i{position:absolute;bottom:45px;width:12px;height:75px;border-radius:6px;background:linear-gradient(#f6ca43,#e79c24);transform-origin:bottom;box-shadow:inset 2px 0 rgba(255,255,255,.2)}.fb3d-fries i:nth-child(1){left:13px;transform:rotate(-13deg)}.fb3d-fries i:nth-child(2){left:27px;height:84px;transform:rotate(-5deg)}.fb3d-fries i:nth-child(3){left:41px;height:88px;transform:rotate(3deg)}.fb3d-fries i:nth-child(4){left:55px;height:78px;transform:rotate(10deg)}.fb3d-fries i:nth-child(5){left:69px;height:69px;transform:rotate(17deg)}.fb3d-fries div{position:absolute;bottom:8px;left:7px;width:76px;height:54px;background:linear-gradient(90deg,#e34722,#b62d17);clip-path:polygon(6% 0,94% 0,80% 100%,20% 100%);box-shadow:inset 0 7px rgba(255,255,255,.12)}
+.fb3d-caption{position:absolute;left:6%;bottom:6%;display:flex;align-items:center;gap:10px;color:#5d5650;font:800 8px Inter,sans-serif;letter-spacing:.2em}.fb3d-caption-line{width:34px;height:1px;background:#ff7626}
+@keyframes fb3d-float{0%,100%{margin-top:0}50%{margin-top:-10px}}@keyframes fb3d-pulse{50%{opacity:.4;box-shadow:0 0 3px #ff741f}}@keyframes fb3d-card1{0%,100%{margin-top:0}50%{margin-top:-15px}}@keyframes fb3d-card2{0%,100%{margin-top:0}50%{margin-top:13px}}@keyframes fb3d-food{0%,100%{margin-top:0;rotate:0deg}50%{margin-top:-18px;rotate:2deg}}
+.fb3d-login.fb3d-auth .fb3d-terminal{animation:none;transform:translate(-50%,-48%) rotateX(3deg) rotateY(0) translateZ(90px) scale(1.025);filter:drop-shadow(0 55px 45px rgba(255,91,18,.2))}.fb3d-login.fb3d-auth .fb3d-submit{box-shadow:0 0 45px rgba(255,103,25,.45)}.fb3d-login.fb3d-success .fb3d-terminal{animation:fb3d-enter .9s cubic-bezier(.16,1,.3,1) forwards}.fb3d-login.fb3d-success .fb3d-world{animation:fb3d-world-exit .9s ease forwards}
+@keyframes fb3d-enter{0%{transform:translate(-50%,-48%) rotateX(3deg) translateZ(90px) scale(1.025)}100%{transform:translate(-50%,-48%) rotateX(0) translateZ(500px) scale(1.4)}}@keyframes fb3d-world-exit{to{transform:scale(1.05) translateZ(80px);opacity:.9}}
+@media(max-width:900px){.fb3d-terminal{width:min(560px,86vw);height:650px;transform:translate(-50%,-49%) rotateX(5deg) rotateY(0) translateZ(40px)}.fb3d-terminal-body{height:550px}.fb3d-terminal-screen{height:485px}.fb3d-screen-ui{padding:28px 34px}.fb3d-float-1{left:3%;top:17%}.fb3d-float-2{right:3%;top:26%}.fb3d-float-3{left:4%;bottom:16%}.fb3d-float-4{right:4%;bottom:13%}.fb3d-burger{left:3%;bottom:4%;transform:translateZ(120px) scale(.75)}.fb3d-fries{right:3%;bottom:4%;transform:translateZ(120px) scale(.72)}}
+@media(max-width:620px){.fb3d-terminal{width:92vw;height:610px;transform:translate(-50%,-50%) rotateX(0) translateZ(20px)}.fb3d-terminal-body{height:510px;padding:10px}.fb3d-terminal-screen{height:445px;border-width:5px}.fb3d-screen-ui{padding:24px 22px}.fb3d-screen-brand{margin-bottom:18px}.fb3d-screen-ui h1{font-size:28px}.fb3d-float-ticket{display:none}.fb3d-float-3,.fb3d-float-4{display:none}.fb3d-burger{left:-2%;bottom:2%;opacity:.55}.fb3d-fries{right:-2%;bottom:2%;opacity:.55}.fb3d-caption{left:22px;bottom:18px}.fb3d-floor-grid{bottom:-20%}.fb3d-terminal-base{bottom:-30px}}
+@media(prefers-reduced-motion:reduce){.fb3d-terminal,.fb3d-floating,.fb3d-side-object{animation:none!important}.fb3d-world{transition:none}.fb3d-login.fb3d-success .fb3d-terminal,.fb3d-login.fb3d-success .fb3d-world{animation:none}}
+/* UPI only: keep the existing Clear Cart / Complete Payment actions visible while the QR is expanded. */
+#checkout-actions.upi-sticky-actions { position: sticky; bottom: 0; z-index: 20; background: #fff; padding-top: 10px; padding-bottom: 4px; }
+
+
+/* ================================================================
+   MOBILE POS UI ONLY
+   Desktop and the 3D login above are intentionally untouched.
+   ================================================================ */
 @media (max-width: 767px) {
-
-    html,
-    body {
+    html, body {
         width: 100%;
         height: 100%;
         overflow: hidden;
     }
 
-    body {
-        min-width: 0;
+    body > .flex.flex-1 {
+        position: relative;
+        display: block !important;
+        width: 100%;
+        height: calc(100dvh - 58px);
+        min-height: 0;
+        overflow: hidden;
     }
-
-    /* ---------- NAVBAR ---------- */
 
     nav.no-print {
         min-height: 58px;
         height: 58px;
-        padding: 8px 12px;
+        padding: 8px 10px;
         gap: 8px;
+        overflow: hidden;
     }
 
     nav.no-print > div:first-child {
@@ -824,8 +90,8 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     nav.no-print > div:first-child > div:first-child {
-        gap: 7px;
         min-width: 0;
+        gap: 7px;
     }
 
     nav.no-print .bg-orange-600 {
@@ -834,11 +100,11 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     nav.no-print .bg-orange-600 i {
-        font-size: 16px;
+        font-size: 15px;
     }
 
     nav.no-print .text-xl {
-        font-size: 16px;
+        font-size: 15px;
         white-space: nowrap;
     }
 
@@ -848,13 +114,9 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     #admin-btn {
-        padding: 7px 8px;
-        font-size: 10px;
+        padding: 6px 7px;
+        font-size: 9px;
         white-space: nowrap;
-    }
-
-    #admin-btn i {
-        margin-right: 3px !important;
     }
 
     #logout-btn {
@@ -868,24 +130,11 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     nav.no-print .w-10 {
-        width: 32px;
-        height: 32px;
+        width: 30px;
+        height: 30px;
         flex-shrink: 0;
-        font-size: 10px;
+        font-size: 9px;
     }
-
-    /* ---------- MAIN APP ---------- */
-
-    body > .flex.flex-1 {
-        position: relative;
-        display: block !important;
-        width: 100%;
-        height: calc(100dvh - 58px);
-        min-height: 0;
-        overflow: hidden;
-    }
-
-    /* ---------- CATEGORY SIDEBAR ---------- */
 
     #category-sidebar {
         position: absolute;
@@ -893,37 +142,38 @@ body > .flex.flex-1 > aside:last-child {
         left: 0;
         bottom: 0;
         z-index: 20;
-
-        width: 66px;
-        min-width: 66px;
+        width: 68px;
+        min-width: 68px;
         height: 100%;
-
-        padding: 12px 5px;
+        padding: 10px 5px;
         gap: 10px;
-
         overflow-x: hidden;
         overflow-y: auto;
-
-        border-right: 1px solid #e5e7eb;
-        background: #fff;
+        -webkit-overflow-scrolling: touch;
     }
 
     #category-sidebar > * {
-        width: 56px;
-        max-width: 56px;
+        width: 58px;
+        max-width: 58px;
+        min-height: 58px;
         flex-shrink: 0;
     }
 
-    /* ---------- MAIN CONTENT ---------- */
+    #category-sidebar i {
+        font-size: 17px;
+    }
+
+    #category-sidebar span {
+        font-size: 8px;
+        line-height: 1.1;
+    }
 
     body > .flex.flex-1 > main {
         width: 100%;
         height: 100%;
         min-width: 0;
         min-height: 0;
-
-        padding: 14px 12px 120px 78px;
-
+        padding: 12px 10px 112px 78px;
         overflow-x: hidden;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
@@ -935,14 +185,13 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     #pos-view > .flex {
-        gap: 8px;
-        margin-bottom: 14px;
-        min-width: 0;
+        gap: 7px;
+        margin-bottom: 12px;
     }
 
     #active-category-title {
         min-width: 0;
-        font-size: 19px;
+        font-size: 18px;
         line-height: 1.2;
     }
 
@@ -952,12 +201,10 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     #pos-view > .flex > div:last-child button {
-        padding: 7px 9px;
-        font-size: 10px;
+        padding: 6px 8px;
+        font-size: 9px;
         white-space: nowrap;
     }
-
-    /* ---------- MENU GRID ---------- */
 
     #menu-grid {
         display: grid !important;
@@ -969,39 +216,53 @@ body > .flex.flex-1 > aside:last-child {
     #menu-grid > * {
         width: 100%;
         min-width: 0;
+        overflow: hidden;
     }
 
-    #menu-grid img {
-        max-width: 100%;
+    #menu-grid > * > div:first-child {
+        height: 120px !important;
     }
 
-    #menu-grid button {
-        max-width: 100%;
+    #menu-grid > * > div:last-child {
+        padding: 10px !important;
     }
 
-    /* ---------- BILLING SIDEBAR ---------- */
+    #menu-grid h3 {
+        font-size: 12px;
+        line-height: 1.25;
+    }
+
+    #menu-grid p {
+        font-size: 8px;
+        margin-bottom: 8px;
+    }
+
+    #menu-grid .text-lg {
+        font-size: 14px;
+    }
+
+    #menu-grid .bg-orange-50 {
+        padding: 7px;
+    }
+
+    #menu-grid .bg-orange-50 i {
+        font-size: 11px;
+    }
 
     body > .flex.flex-1 > aside:last-child {
         position: fixed;
-        z-index: 50;
-
         left: 0;
         right: 0;
         bottom: 0;
-
+        z-index: 50;
         width: 100% !important;
         min-width: 0 !important;
         max-width: none !important;
-        flex: none !important;
-
         height: 102px;
         min-height: 102px;
-
         border-left: 0;
         border-top: 1px solid #e5e7eb;
-
-        box-shadow: 0 -8px 25px rgba(0,0,0,0.12);
-
+        box-shadow: 0 -8px 25px rgba(0,0,0,.12);
         display: flex;
         flex-direction: column;
     }
@@ -1014,22 +275,21 @@ body > .flex.flex-1 > aside:last-child {
         display: none;
     }
 
-    /* ---------- MOBILE SUMMARY ---------- */
-
     body > .flex.flex-1 > aside:last-child > .p-6:last-child {
-        padding: 10px 12px;
+        width: 100%;
         height: 100%;
         min-height: 0;
+        padding: 9px 10px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        background: white;
+        gap: 8px;
+        background: #f9fafb;
         overflow: visible;
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
+        width: 105px;
         margin: 0;
-        width: 110px;
         flex-shrink: 0;
     }
 
@@ -1037,28 +297,14 @@ body > .flex.flex-1 > aside:last-child {
         display: none;
     }
 
-    #pay-cash,
-    #pay-upi {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        font-size: 10px;
+    #pay-cash, #pay-upi {
+        padding-top: 7px;
+        padding-bottom: 7px;
+        font-size: 9px;
     }
 
-    #pay-cash i,
-    #pay-upi i {
-        margin-right: 3px !important;
-    }
-
-    #upi-qr-box {
-        position: fixed;
-        left: 50%;
-        bottom: 115px;
-        transform: translateX(-50%);
-        width: min(92vw, 350px);
-        max-height: calc(100dvh - 140px);
-        overflow-y: auto;
-        z-index: 100;
-        box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    #pay-cash i, #pay-upi i {
+        margin-right: 2px !important;
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 {
@@ -1068,7 +314,7 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div {
-        font-size: 10px;
+        font-size: 9px;
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:nth-child(1),
@@ -1083,43 +329,44 @@ body > .flex.flex-1 > aside:last-child {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 2px;
+        gap: 1px;
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:last-child span:first-child {
-        font-size: 9px;
+        font-size: 8px;
         color: #9ca3af;
         text-transform: uppercase;
     }
 
     #summary-total {
-        font-size: 19px;
+        font-size: 18px;
     }
 
-    /* ---------- CHECKOUT ---------- */
-
     #checkout-actions {
-        width: 180px;
+        width: 170px;
         flex-shrink: 0;
         gap: 6px;
         margin: 0;
     }
 
     #checkout-actions button {
-        padding: 11px 5px;
-        border-radius: 12px;
-        font-size: 9px;
+        padding: 10px 4px;
+        border-radius: 11px;
+        font-size: 8px;
         line-height: 1.2;
     }
 
-    /* ---------- CUSTOMER INPUTS ---------- */
-
-    #cust-name,
-    #cust-mobile {
-        font-size: 11px;
+    #upi-qr-box {
+        position: fixed;
+        left: 50%;
+        bottom: 112px;
+        transform: translateX(-50%);
+        width: min(92vw, 340px);
+        max-height: calc(100dvh - 130px);
+        overflow-y: auto;
+        z-index: 100;
+        box-shadow: 0 20px 50px rgba(0,0,0,.25);
     }
-
-    /* ---------- HISTORY ---------- */
 
     #history-view {
         width: 100%;
@@ -1129,7 +376,7 @@ body > .flex.flex-1 > aside:last-child {
     #history-content > .flex {
         flex-direction: column;
         align-items: stretch;
-        gap: 12px;
+        gap: 10px;
     }
 
     #history-search {
@@ -1138,705 +385,36 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     #admin-login-card {
-        margin-top: 25px;
-        padding: 22px;
+        margin-top: 20px;
+        padding: 20px;
     }
-
-    /* ---------- MODALS ---------- */
 
     #upi-payment-modal,
     #success-modal {
-        padding: 12px;
-    }
-
-    #upi-payment-modal > div,
-    #success-modal > div {
-        width: 100%;
-        max-width: 380px;
-        max-height: calc(100dvh - 24px);
-        overflow-y: auto;
-    }
-
-    #success-modal .p-10 {
-        padding: 24px 18px;
-    }
-
-    #success-modal .w-24 {
-        width: 68px;
-        height: 68px;
-    }
-
-    #success-modal .text-5xl {
-        font-size: 32px;
-    }
-
-    /* ---------- LOGIN MOBILE ---------- */
-
-    .fb3d-login {
-        height: 100dvh;
-    }
-
-    .fb3d-world {
-        min-height: 100dvh;
-        padding: 15px;
-        perspective: none;
-    }
-
-    .fb3d-terminal {
-        width: min(100%, 410px);
-        max-height: calc(100dvh - 30px);
-        transform: none;
-        filter: drop-shadow(0 25px 35px rgba(0,0,0,0.4));
-    }
-
-    .fb3d-terminal-top {
-        height: 34px;
-        padding: 0 12px;
-        border-radius: 13px 13px 0 0;
-        font-size: 8px;
-    }
-
-    .fb3d-terminal-code {
-        font-size: 6px;
-    }
-
-    .fb3d-terminal-body {
-        padding: 8px;
-    }
-
-    .fb3d-screen-ui {
-        padding: 25px 20px 20px;
-    }
-
-    .fb3d-logo-3d {
-        width: 36px;
-        height: 36px;
-        font-size: 18px;
-        border-radius: 10px;
-    }
-
-    .fb3d-screen-brand {
-        gap: 9px;
-        margin-bottom: 13px;
-    }
-
-    .fb3d-screen-brand strong {
-        font-size: 14px;
-    }
-
-    .fb3d-screen-brand small {
-        font-size: 6px;
-    }
-
-    .fb3d-screen-ui h1 {
-        font-size: 23px;
-    }
-
-    .fb3d-subtitle {
-        margin-bottom: 19px;
-        font-size: 10px;
-    }
-
-    .fb3d-field {
-        margin-bottom: 11px;
-    }
-
-    .fb3d-input input {
-        height: 40px;
-        font-size: 10px;
-    }
-
-    .fb3d-submit {
-        height: 41px;
-        font-size: 9px;
-    }
-
-    .fb3d-screen-footer {
-        margin-top: 16px;
-        padding-top: 10px;
-        font-size: 6px;
-    }
-
-    .fb3d-terminal-controls {
-        height: 32px;
-        padding: 0 11px;
-    }
-
-    .fb3d-terminal-base {
-        height: 12px;
-        border-radius: 0 0 14px 14px;
-    }
-
-    .fb3d-burger,
-    .fb3d-fries,
-    .fb3d-floating,
-    .fb3d-caption {
-        display: none;
-    }
-
-    .fb3d-floor-grid {
-        opacity: 0.06;
-    }
-}
-
-/* =========================================================
-   VERY SMALL PHONES
-   ========================================================= */
-
-@media (max-width: 420px) {
-
-    nav.no-print {
-        padding-left: 8px;
-        padding-right: 8px;
-    }
-
-    nav.no-print .text-xl {
-        font-size: 14px;
-    }
-
-    nav.no-print .bg-orange-600 {
-        padding: 6px;
-    }
-
-    #admin-btn {
-        font-size: 9px;
-        padding: 6px;
-    }
-
-    #category-sidebar {
-        width: 60px;
-        min-width: 60px;
-    }
-
-    #category-sidebar > * {
-        width: 50px;
-        max-width: 50px;
-    }
-
-    body > .flex.flex-1 > main {
-        padding-left: 70px;
-        padding-right: 8px;
-        padding-top: 10px;
-        padding-bottom: 112px;
-    }
-
-    #active-category-title {
-        font-size: 17px;
-    }
-
-    #pos-view > .flex > div:last-child button {
-        padding: 6px 7px;
-        font-size: 8px;
-    }
-
-    #menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 8px !important;
-    }
-
-    #checkout-actions {
-        width: 160px;
-    }
-
-    #checkout-actions button {
-        font-size: 8px;
-    }
-
-    body > .flex.flex-1 > aside:last-child {
-        height: 96px;
-        min-height: 96px;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child {
-        padding: 8px;
-        gap: 6px;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
-        width: 95px;
-    }
-
-    #summary-total {
-        font-size: 17px;
-    }
-
-    .fb3d-world {
         padding: 10px;
     }
 
-    .fb3d-screen-ui {
-        padding: 20px 16px 17px;
-    }
-}
-
-/* =========================================================
-   LANDSCAPE MOBILE
-   ========================================================= */
-
-@media (max-width: 767px) and (orientation: landscape) {
-
-    .fb3d-world {
-        align-items: flex-start;
-        overflow-y: auto;
-    }
-
-    .fb3d-terminal {
-        margin: 8px 0;
-    }
-
-    .fb3d-screen-ui {
-        padding: 14px 25px;
-    }
-
-    .fb3d-screen-brand {
-        margin-bottom: 8px;
-    }
-
-    .fb3d-subtitle {
-        margin-bottom: 10px;
-    }
-
-    .fb3d-field {
-        margin-bottom: 7px;
-    }
-
-    .fb3d-input input {
-        height: 34px;
-    }
-
-    .fb3d-submit {
-        height: 36px;
-    }
-
-    .fb3d-screen-footer {
-        display: none;
-    }
-
-    .fb3d-terminal-controls {
-        height: 25px;
-    }
-
-    .fb3d-terminal-base {
-        height: 8px;
-    }
-}
-
-/* =========================================================
-   ACCESSIBILITY / TOUCH SAFETY
-   ========================================================= */
-
-@media (hover: none) {
-    .fb3d-submit:hover {
-        transform: none;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-        transition-duration: 0.01ms !important;
-    }
-}
-
-
-/* =========================================================
-   MOBILE-ONLY FIX APPENDED — EXISTING CSS PRESERVED
-   ========================================================= */
-
-/* =========================================================
-   FASTBITE POS — MOBILE-ONLY FIX
-   IMPORTANT:
-   - Does NOT modify desktop layout
-   - Does NOT modify the 3D login screen
-   - Does NOT modify JavaScript
-   - Applies only to POS screens below 767px
-   ========================================================= */
-
-@media (max-width: 767px) {
-
-    html,
-    body {
-        width: 100%;
-        height: 100%;
-        overflow: hidden;
-    }
-
-    body {
-        min-width: 0;
-    }
-
-    /* ---------- POS NAVBAR ---------- */
-
-    nav.no-print {
-        min-height: 58px;
-        height: 58px;
-        padding: 8px 12px;
-        gap: 8px;
-    }
-
-    nav.no-print > div:first-child {
-        min-width: 0;
-        flex: 1;
-    }
-
-    nav.no-print > div:first-child > div:first-child {
-        gap: 7px;
-    }
-
-    nav.no-print .bg-orange-600 {
-        padding: 7px;
-    }
-
-    nav.no-print .bg-orange-600 i {
-        font-size: 16px;
-    }
-
-    nav.no-print .text-xl {
-        font-size: 16px;
-        white-space: nowrap;
-    }
-
-    nav.no-print > div:last-child {
-        gap: 5px;
-    }
-
-    #admin-btn {
-        padding: 7px 8px;
-        font-size: 10px;
-        white-space: nowrap;
-    }
-
-    #admin-btn i {
-        margin-right: 3px !important;
-    }
-
-    #logout-btn {
-        padding: 5px;
-        font-size: 9px;
-    }
-
-    nav.no-print .border-l {
-        border-left: 0;
-        padding-left: 0;
-    }
-
-    nav.no-print .w-10 {
-        width: 32px;
-        height: 32px;
-        flex-shrink: 0;
-        font-size: 10px;
-    }
-
-    /* ---------- POS MAIN AREA ---------- */
-
-    body > .flex.flex-1 {
-        position: relative;
-        display: block !important;
-        width: 100%;
-        height: calc(100dvh - 58px);
-        min-height: 0;
-        overflow: hidden;
-    }
-
-    /* ---------- CATEGORY BAR ---------- */
-
-    #category-sidebar {
-        position: absolute;
-        top: 0;
-        left: 0;
-        bottom: 0;
-        z-index: 20;
-
-        width: 66px;
-        min-width: 66px;
-        height: 100%;
-
-        padding: 12px 5px;
-        gap: 10px;
-
-        overflow-x: hidden;
-        overflow-y: auto;
-
-        border-right: 1px solid #e5e7eb;
-    }
-
-    #category-sidebar > * {
-        width: 56px;
-        max-width: 56px;
-        flex-shrink: 0;
-    }
-
-    /* ---------- POS CONTENT ---------- */
-
-    body > .flex.flex-1 > main {
-        width: 100%;
-        height: 100%;
-        min-width: 0;
-        min-height: 0;
-
-        padding: 14px 12px 120px 78px;
-
-        overflow-x: hidden;
-        overflow-y: auto;
-    }
-
-    #pos-view {
-        width: 100%;
-        min-width: 0;
-    }
-
-    #pos-view > .flex {
-        gap: 8px;
-        margin-bottom: 14px;
-    }
-
-    #active-category-title {
-        font-size: 19px;
-        line-height: 1.2;
-    }
-
-    #pos-view > .flex > div:last-child {
-        gap: 5px;
-    }
-
-    #pos-view > .flex > div:last-child button {
-        padding: 7px 9px;
-        font-size: 10px;
-        white-space: nowrap;
-    }
-
-    /* ---------- PRODUCT GRID ---------- */
-
-    #menu-grid {
-        display: grid !important;
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        gap: 10px !important;
-        width: 100%;
-    }
-
-    #menu-grid > * {
-        width: 100%;
-        min-width: 0;
-    }
-
-    #menu-grid img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    #menu-grid button {
-        max-width: 100%;
-    }
-
-    /* ---------- MOBILE BILLING BAR ---------- */
-
-    body > .flex.flex-1 > aside:last-child {
-        position: fixed;
-        z-index: 50;
-
-        left: 0;
-        right: 0;
-        bottom: 0;
-
-        width: 100% !important;
-        min-width: 0 !important;
-        max-width: none !important;
-
-        height: 102px;
-        min-height: 102px;
-
-        border-left: 0;
-        border-top: 1px solid #e5e7eb;
-
-        box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.12);
-
-        display: flex;
-        flex-direction: column;
-    }
-
-    body > .flex.flex-1 > aside:last-child > div:first-child {
-        display: none;
-    }
-
-    #cart-container {
-        display: none;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child {
-        padding: 10px 12px;
-        height: 100%;
-        min-height: 0;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        background: white;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
-        margin: 0;
-        width: 110px;
-        flex-shrink: 0;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 > label {
-        display: none;
-    }
-
-    #pay-cash,
-    #pay-upi {
-        padding-top: 8px;
-        padding-bottom: 8px;
-        font-size: 10px;
-    }
-
-    #pay-cash i,
-    #pay-upi i {
-        margin-right: 3px !important;
-    }
-
-    #upi-qr-box {
-        position: fixed;
-        left: 50%;
-        bottom: 115px;
-        transform: translateX(-50%);
-        width: min(92vw, 350px);
-        max-height: calc(100dvh - 140px);
-        overflow-y: auto;
-        z-index: 100;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 {
-        flex: 1;
-        min-width: 0;
-        margin: 0;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div {
-        font-size: 10px;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:nth-child(1),
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:nth-child(2) {
-        display: none;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:last-child {
-        border: 0;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 2px;
-    }
-
-    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:last-child span:first-child {
-        font-size: 9px;
-        color: #9ca3af;
-        text-transform: uppercase;
-    }
-
-    #summary-total {
-        font-size: 19px;
-    }
-
-    /* ---------- CHECKOUT ---------- */
-
-    #checkout-actions {
-        width: 180px;
-        flex-shrink: 0;
-        gap: 6px;
-        margin: 0;
-    }
-
-    #checkout-actions button {
-        padding: 11px 5px;
-        border-radius: 12px;
-        font-size: 9px;
-        line-height: 1.2;
-    }
-
-    /* ---------- CUSTOMER FIELDS ---------- */
-
-    #cust-name,
-    #cust-mobile {
-        font-size: 11px;
-    }
-
-    /* ---------- HISTORY ---------- */
-
-    #history-view {
-        width: 100%;
-    }
-
-    #history-content > .flex {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 12px;
-    }
-
-    #history-search {
-        width: 100%;
-    }
-
-    #admin-login-card {
-        margin-top: 25px;
-        padding: 22px;
-    }
-
-    /* ---------- POS MODALS ---------- */
-
-    #upi-payment-modal,
-    #success-modal {
-        padding: 12px;
-    }
-
     #upi-payment-modal > div,
     #success-modal > div {
         width: 100%;
         max-width: 380px;
-        max-height: calc(100dvh - 24px);
+        max-height: calc(100dvh - 20px);
         overflow-y: auto;
-    }
-
-    #success-modal .p-10 {
-        padding: 24px 18px;
-    }
-
-    #success-modal .w-24 {
-        width: 68px;
-        height: 68px;
-    }
-
-    #success-modal .text-5xl {
-        font-size: 32px;
     }
 }
 
-/* ---------- VERY SMALL PHONES ---------- */
-
 @media (max-width: 420px) {
-
     nav.no-print {
-        padding-left: 8px;
-        padding-right: 8px;
+        padding-left: 7px;
+        padding-right: 7px;
     }
 
     nav.no-print .text-xl {
         font-size: 14px;
     }
 
-    nav.no-print .bg-orange-600 {
-        padding: 6px;
-    }
-
     #admin-btn {
-        font-size: 9px;
+        font-size: 8px;
         padding: 6px;
     }
 
@@ -1852,30 +430,41 @@ body > .flex.flex-1 > aside:last-child {
 
     body > .flex.flex-1 > main {
         padding-left: 70px;
-        padding-right: 8px;
-        padding-top: 10px;
+        padding-right: 7px;
+        padding-bottom: 108px;
     }
 
     #active-category-title {
-        font-size: 17px;
+        font-size: 16px;
     }
 
     #pos-view > .flex > div:last-child button {
-        padding: 6px 7px;
+        padding: 5px 6px;
         font-size: 8px;
     }
 
     #menu-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 8px !important;
     }
 
+    #menu-grid > * > div:first-child {
+        height: 105px !important;
+    }
+
+    #menu-grid > * > div:last-child {
+        padding: 8px !important;
+    }
+
+    #menu-grid h3 {
+        font-size: 11px;
+    }
+
     #checkout-actions {
-        width: 160px;
+        width: 150px;
     }
 
     #checkout-actions button {
-        font-size: 8px;
+        font-size: 7px;
     }
 
     body > .flex.flex-1 > aside:last-child {
@@ -1884,15 +473,15 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child {
-        padding: 8px;
-        gap: 6px;
+        padding: 7px;
+        gap: 5px;
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
-        width: 95px;
+        width: 90px;
     }
 
     #summary-total {
-        font-size: 17px;
+        font-size: 16px;
     }
 }

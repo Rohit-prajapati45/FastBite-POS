@@ -1,5 +1,41 @@
+/* =========================================================
+   FASTBITE POS
+   COMPLETE CUSTOM CSS
+   ========================================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
 body {
-    font-family: 'Inter', sans-serif;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+/* =========================================================
+   GENERAL
+   ========================================================= */
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
@@ -7,23 +43,26 @@ body {
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
     background: #d1d5db;
-    border-radius: 10px;
+    border-radius: 20px;
 }
 
-.menu-card:hover {
-    transform: translateY(-4px);
-    transition: all 0.3s ease;
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s ease-out;
 }
 
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(5px);
     }
 
     to {
@@ -32,70 +71,58 @@ body {
     }
 }
 
-.animate-fadeIn {
-    animation: fadeIn 0.3s ease-out forwards;
-}
-
-
-/* ================================================================
-   PRINT STYLES
-   ================================================================ */
-
-@media print {
-    .no-print {
-        display: none !important;
-    }
-
-    .print-only {
-        display: block !important;
-    }
-
-    body {
-        background: white;
-        height: auto;
-        overflow: visible;
-    }
-}
+/* =========================================================
+   PRINT
+   ========================================================= */
 
 .print-only {
     display: none;
 }
 
+@media print {
+    body {
+        overflow: visible !important;
+        background: white !important;
+    }
 
-/* ================================================================
-   FASTBITE 3D LOGIN
-   Only the login layer uses these styles.
-   ================================================================ */
+    body > *:not(#receipt-print) {
+        display: none !important;
+    }
+
+    #receipt-print {
+        display: block !important;
+        width: 100%;
+        min-height: auto !important;
+        padding: 20px !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+}
+
+/* =========================================================
+   3D LOGIN SCREEN
+   ========================================================= */
 
 .fb3d-login {
     position: fixed;
     inset: 0;
-    z-index: 200;
+    z-index: 9999;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
-    background: #090807;
-    color: #f7f3ed;
-    perspective: 1800px;
-    isolation: isolate;
+    background:
+        radial-gradient(circle at 50% 30%, rgba(249, 115, 22, 0.15), transparent 30%),
+        linear-gradient(135deg, #111827 0%, #1f2937 45%, #030712 100%);
 }
 
 .fb3d-world {
-    position: absolute;
-    inset: -5%;
-    transform-style: preserve-3d;
-    transition: transform .25s ease-out;
-    will-change: transform;
-    background:
-        radial-gradient(
-            circle at 50% 38%,
-            rgba(246,112,22,.14),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 78% 24%,
-            rgba(255,166,76,.09),
-            transparent 20%
-        ),
-        #090807;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    perspective: 1400px;
+    overflow: hidden;
 }
 
 .fb3d-ambient {
@@ -103,1361 +130,1111 @@ body {
     border-radius: 50%;
     filter: blur(80px);
     pointer-events: none;
-    transform: translateZ(-180px);
 }
 
 .fb3d-ambient-a {
-    width: 35vw;
-    height: 35vw;
-    left: -10vw;
-    top: 10vh;
-    background: rgba(255,98,18,.16);
+    width: 400px;
+    height: 400px;
+    top: -150px;
+    left: -100px;
+    background: rgba(249, 115, 22, 0.16);
 }
 
 .fb3d-ambient-b {
-    width: 30vw;
-    height: 30vw;
-    right: -5vw;
-    bottom: -10vh;
-    background: rgba(255,155,65,.11);
+    width: 500px;
+    height: 500px;
+    right: -150px;
+    bottom: -200px;
+    background: rgba(251, 146, 60, 0.1);
 }
 
 .fb3d-floor-grid {
     position: absolute;
-    left: -10%;
-    right: -10%;
-    bottom: -34%;
-    height: 70%;
-    transform: rotateX(68deg) translateZ(-180px);
-    transform-origin: center top;
+    left: -20%;
+    right: -20%;
+    bottom: -35%;
+    height: 60%;
+    transform: perspective(500px) rotateX(62deg);
     background-image:
-        linear-gradient(
-            rgba(255,143,53,.12) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            90deg,
-            rgba(255,143,53,.12) 1px,
-            transparent 1px
-        );
-    background-size: 70px 70px;
-    mask-image: linear-gradient(
-        to bottom,
-        transparent,
-        black 35%,
-        transparent
-    );
-    opacity: .55;
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    opacity: 0.5;
+}
+
+.fb3d-floating {
+    position: absolute;
+    z-index: 3;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    background: rgba(17, 24, 39, 0.75);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+    color: white;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+.fb3d-floating b {
+    display: block;
+    margin-top: 3px;
+    color: #fb923c;
+}
+
+.fb3d-float-1 {
+    top: 18%;
+    left: 9%;
+    transform: rotateY(12deg) rotateX(5deg);
+}
+
+.fb3d-float-2 {
+    top: 28%;
+    right: 8%;
+    transform: rotateY(-12deg) rotateX(5deg);
+}
+
+.fb3d-float-3 {
+    top: 58%;
+    left: 7%;
+}
+
+.fb3d-float-4 {
+    top: 65%;
+    right: 8%;
 }
 
 .fb3d-terminal {
     position: absolute;
-    left: 50%;
     top: 50%;
-    width: min(620px, 78vw);
-    height: 720px;
-    transform:
-        translate(-50%,-48%)
-        rotateX(7deg)
-        rotateY(-7deg)
-        translateZ(70px);
-    transform-style: preserve-3d;
-    transition:
-        transform .5s cubic-bezier(.2,.8,.2,1),
-        filter .4s;
-    filter: drop-shadow(
-        0 45px 35px rgba(0,0,0,.55)
-    );
-    animation: fb3d-float 6s ease-in-out infinite;
+    left: 50%;
+    width: min(850px, 70vw);
+    transform: translate(-50%, -50%) rotateX(2deg);
+    z-index: 5;
 }
 
 .fb3d-terminal-top {
-    height: 42px;
-    background: linear-gradient(
-        135deg,
-        #24201c,
-        #11100f
-    );
-    border: 1px solid rgba(255,255,255,.12);
-    border-bottom: 0;
-    border-radius: 28px 28px 0 0;
+    height: 48px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
-    padding: 0 22px;
-    gap: 9px;
-    font: 700 10px/1 Inter,sans-serif;
-    letter-spacing: .16em;
-    color: #a9a39b;
-    transform: translateZ(20px);
-    box-shadow: inset 0 1px rgba(255,255,255,.08);
+    gap: 10px;
+    border-radius: 22px 22px 0 0;
+    background: linear-gradient(180deg, #374151, #1f2937);
+    color: #e5e7eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    box-shadow:
+        0 -5px 20px rgba(0, 0, 0, 0.25),
+        inset 0 1px rgba(255, 255, 255, 0.08);
+}
+
+.fb3d-led {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 12px #22c55e;
 }
 
 .fb3d-terminal-code {
     margin-left: auto;
-    color: #665f57;
-    font-size: 8px;
-}
-
-.fb3d-led {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #ff741f;
-    box-shadow: 0 0 12px #ff741f;
-    animation: fb3d-pulse 1.8s infinite;
+    color: #9ca3af;
+    font-size: 9px;
 }
 
 .fb3d-terminal-body {
-    position: relative;
-    height: 610px;
-    padding: 16px;
-    background: linear-gradient(
-        145deg,
-        #302a25,
-        #121110 55%,
-        #25201d
-    );
-    border: 1px solid rgba(255,255,255,.12);
+    padding: 18px;
+    background: linear-gradient(145deg, #374151, #111827);
     box-shadow:
-        inset 0 1px rgba(255,255,255,.08),
-        inset 0 -20px 35px rgba(0,0,0,.28);
-    transform: translateZ(12px);
-    transform-style: preserve-3d;
+        0 35px 80px rgba(0, 0, 0, 0.45),
+        inset 0 1px rgba(255, 255, 255, 0.08);
 }
 
 .fb3d-terminal-screen {
     position: relative;
-    height: 545px;
-    border-radius: 17px;
-    background: #0d0c0b;
-    border: 8px solid #191715;
-    box-shadow:
-        inset 0 0 0 1px rgba(255,255,255,.08),
-        0 14px 24px rgba(0,0,0,.45);
     overflow: hidden;
-    transform: translateZ(26px);
-    transform-style: preserve-3d;
-}
-
-.fb3d-terminal-screen:before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-        120deg,
-        rgba(255,255,255,.09),
-        transparent 20%,
-        transparent 75%,
-        rgba(255,119,36,.05)
-    );
-    pointer-events: none;
-    z-index: 4;
+    border-radius: 12px;
+    background: #f9fafb;
+    box-shadow:
+        inset 0 0 0 3px #111827,
+        0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 .fb3d-screen-depth {
     position: absolute;
     inset: 0;
+    pointer-events: none;
     background:
-        radial-gradient(
-            circle at 50% 0%,
-            rgba(255,111,30,.12),
-            transparent 38%
-        ),
-        linear-gradient(
-            160deg,
-            #171310,
-            #080807 65%
-        );
-    transform: translateZ(-12px) scale(1.03);
+        radial-gradient(circle at 70% 20%, rgba(249, 115, 22, 0.08), transparent 30%),
+        linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4));
 }
 
 .fb3d-screen-ui {
     position: relative;
-    z-index: 5;
-    height: 100%;
-    padding: 34px 48px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    transform: translateZ(8px);
+    z-index: 2;
+    padding: 38px 55px;
 }
 
 .fb3d-screen-brand {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
 
 .fb3d-logo-3d {
     width: 42px;
     height: 42px;
-    border-radius: 13px;
-    display: grid;
-    place-items: center;
-    background: linear-gradient(
-        145deg,
-        #ff8c32,
-        #d94d0b
-    );
-    box-shadow:
-        inset 0 1px rgba(255,255,255,.35),
-        0 8px 20px rgba(232,81,10,.25);
-    transform: rotate(-5deg) translateZ(8px);
-    font-size: 20px;
-    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: linear-gradient(145deg, #fb923c, #ea580c);
+    color: white;
+    font-size: 23px;
+    font-weight: 800;
+    box-shadow: 0 8px 15px rgba(234, 88, 12, 0.25);
 }
 
 .fb3d-screen-brand strong {
     display: block;
-    font: 800 19px/1 Inter,sans-serif;
-    letter-spacing: -.04em;
+    color: #1f2937;
+    font-size: 16px;
+    letter-spacing: 0.03em;
 }
 
 .fb3d-screen-brand strong span {
-    color: #ff7626;
+    color: #ea580c;
 }
 
 .fb3d-screen-brand small {
     display: block;
-    margin-top: 5px;
-    color: #77716a;
-    font: 700 7px/1 Inter,sans-serif;
-    letter-spacing: .2em;
+    margin-top: 2px;
+    color: #9ca3af;
+    font-size: 7px;
+    letter-spacing: 0.15em;
 }
 
 .fb3d-access-line {
-    font: 700 8px/1 Inter,sans-serif;
-    letter-spacing: .16em;
-    color: #77716b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
     margin-bottom: 14px;
+    color: #9ca3af;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
 }
 
 .fb3d-access-line span {
-    display: inline-block;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    background: #ff7626;
-    box-shadow: 0 0 10px #ff7626;
-    margin-right: 7px;
+    background: #22c55e;
 }
 
 .fb3d-screen-ui h1 {
-    font: 700 clamp(28px,4vw,38px)/1.05 Inter,sans-serif;
-    letter-spacing: -.05em;
     margin: 0;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
 }
 
 .fb3d-subtitle {
-    color: #77716a;
-    font: 400 11px/1.5 Inter,sans-serif;
-    margin: 9px 0 25px;
+    margin: 6px 0 24px;
+    color: #6b7280;
+    font-size: 12px;
 }
 
 .fb3d-form {
-    display: grid;
-    gap: 16px;
+    width: 100%;
+    max-width: 520px;
+}
+
+.fb3d-field {
+    margin-bottom: 15px;
 }
 
 .fb3d-field label {
     display: block;
-    color: #7d766f;
-    font: 800 7px/1 Inter,sans-serif;
-    letter-spacing: .17em;
-    margin: 0 0 7px;
+    margin-bottom: 6px;
+    color: #9ca3af;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
 }
 
 .fb3d-input {
-    height: 47px;
-    border: 1px solid rgba(255,255,255,.1);
-    background: #141210;
-    border-radius: 11px;
     display: flex;
     align-items: center;
-    padding: 0 13px;
-    gap: 10px;
-    box-shadow: inset 0 1px rgba(255,255,255,.035);
-    transition: .2s;
+    height: 46px;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    background: white;
+    transition: 0.2s ease;
 }
 
 .fb3d-input:focus-within {
-    border-color: rgba(255,117,38,.65);
-    box-shadow:
-        0 0 0 3px rgba(255,117,38,.08),
-        inset 0 1px rgba(255,255,255,.05);
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.08);
 }
 
-.fb3d-input i {
-    color: #6c655e;
-    font-size: 12px;
+.fb3d-input > i {
+    width: 45px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 13px;
 }
 
 .fb3d-input input {
-    width: 100%;
+    min-width: 0;
+    flex: 1;
+    height: 100%;
     border: 0;
     outline: 0;
     background: transparent;
-    color: #f4eee8;
-    font: 500 12px Inter,sans-serif;
+    color: #1f2937;
+    font-size: 12px;
 }
 
 .fb3d-input input::placeholder {
-    color: #55504b;
+    color: #9ca3af;
 }
 
 .fb3d-input button {
+    width: 45px;
+    height: 100%;
     border: 0;
     background: transparent;
-    color: #6c655e;
-    cursor: pointer;
+    color: #9ca3af;
 }
 
 .fb3d-error {
-    margin: 0;
-    color: #ff8161;
-    background: rgba(255,79,44,.08);
-    border: 1px solid rgba(255,79,44,.2);
-    border-radius: 9px;
-    padding: 9px;
-    font: 700 9px/1.3 Inter,sans-serif;
+    margin: 8px 0;
+    color: #ef4444;
+    font-size: 10px;
+    font-weight: 600;
 }
 
 .fb3d-submit {
-    height: 49px;
+    position: relative;
+    width: 100%;
+    height: 48px;
+    margin-top: 8px;
     border: 0;
-    border-radius: 12px;
-    cursor: pointer;
-    color: #fff;
-    background: linear-gradient(
-        135deg,
-        #ff8731,
-        #e24d0d
-    );
-    font: 800 10px/1 Inter,sans-serif;
-    letter-spacing: .12em;
-    box-shadow:
-        0 12px 24px rgba(226,77,13,.24),
-        inset 0 1px rgba(255,255,255,.3);
-    transition:
-        transform .15s,
-        box-shadow .15s;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    color: white;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: 0 12px 22px rgba(234, 88, 12, 0.22);
+    transition: 0.2s ease;
 }
 
 .fb3d-submit:hover {
-    transform: translateY(-2px) translateZ(8px);
-    box-shadow:
-        0 18px 30px rgba(226,77,13,.32),
-        inset 0 1px rgba(255,255,255,.3);
+    transform: translateY(-1px);
+    box-shadow: 0 16px 28px rgba(234, 88, 12, 0.28);
 }
 
 .fb3d-submit:active {
-    transform: translateY(1px);
-}
-
-.fb3d-submit:disabled {
-    opacity: .85;
-    cursor: wait;
+    transform: translateY(0);
 }
 
 .fb3d-screen-footer {
     display: flex;
     justify-content: space-between;
-    margin-top: 22px;
-    color: #4f4a45;
-    font: 700 7px/1 Inter,sans-serif;
-    letter-spacing: .08em;
-}
-
-.fb3d-screen-footer i {
-    color: #ff7626;
-    margin-right: 5px;
+    margin-top: 25px;
+    color: #9ca3af;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
 }
 
 .fb3d-terminal-controls {
-    height: 49px;
+    height: 42px;
+    padding: 0 22px;
     display: flex;
     align-items: center;
-    gap: 9px;
-    padding: 0 18px;
-    color: #625a52;
+    gap: 8px;
+    background: linear-gradient(180deg, #1f2937, #111827);
+    color: #6b7280;
 }
 
-.fb3d-terminal-controls > span:not(.fb3d-control-wide) {
-    width: 8px;
-    height: 8px;
+.fb3d-terminal-controls > span {
+    width: 6px;
+    height: 6px;
     border-radius: 50%;
-    background: #4c4640;
-    box-shadow: inset 0 1px rgba(255,255,255,.1);
+    background: #4b5563;
 }
 
 .fb3d-terminal-controls b {
-    font: 800 7px Inter,sans-serif;
-    letter-spacing: .18em;
-    margin-left: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #4b5563;
+    font-size: 8px;
+    letter-spacing: 0.15em;
 }
 
 .fb3d-control-wide {
-    margin-left: auto;
-    width: 100px;
-    height: 6px;
-    border-radius: 8px;
-    background: #443d37;
+    width: 60px !important;
+    height: 5px !important;
+    border-radius: 10px !important;
 }
 
 .fb3d-terminal-base {
-    position: absolute;
-    left: 7%;
-    right: 7%;
-    bottom: -35px;
-    height: 45px;
-    background: linear-gradient(
-        #211d19,
-        #0d0c0b
-    );
-    border: 1px solid rgba(255,255,255,.08);
-    border-radius: 0 0 24px 24px;
-    transform:
-        translateZ(-5px)
-        rotateX(-10deg);
-    box-shadow: 0 30px 35px rgba(0,0,0,.45);
-}
-
-.fb3d-floating {
-    position: absolute;
-    z-index: 2;
-    transform-style: preserve-3d;
-    pointer-events: none;
-}
-
-.fb3d-float-ticket {
-    width: 150px;
-    padding: 13px 15px;
-    border: 1px solid rgba(255,255,255,.1);
-    border-radius: 12px;
-    background: linear-gradient(
-        145deg,
-        rgba(34,30,26,.92),
-        rgba(14,13,12,.92)
-    );
-    box-shadow: 0 20px 40px rgba(0,0,0,.25);
-    font: 700 8px Inter,sans-serif;
-    letter-spacing: .08em;
-}
-
-.fb3d-float-ticket span {
-    display: block;
-    color: #9d958c;
-}
-
-.fb3d-float-ticket b {
-    display: block;
-    margin-top: 7px;
-    color: #ff7a2b;
-    font-size: 7px;
-}
-
-.fb3d-float-1 {
-    left: calc(50% - 455px);
-    top: 22%;
-    transform:
-        translateZ(170px)
-        rotateY(18deg)
-        rotateZ(-5deg);
-    animation: fb3d-card1 5s ease-in-out infinite;
-}
-
-.fb3d-float-2 {
-    right: calc(50% - 455px);
-    top: 31%;
-    transform:
-        translateZ(120px)
-        rotateY(-18deg)
-        rotateZ(5deg);
-    animation: fb3d-card2 6s ease-in-out infinite;
-}
-
-.fb3d-float-chip {
-    padding: 9px 12px;
-    border: 1px solid rgba(255,117,38,.25);
-    border-radius: 999px;
-    background: rgba(255,117,38,.07);
-    color: #ff8b4a;
-    font: 800 7px Inter,sans-serif;
-    letter-spacing: .1em;
-    box-shadow: 0 12px 30px rgba(0,0,0,.2);
-}
-
-.fb3d-float-3 {
-    left: calc(50% - 410px);
-    bottom: 27%;
-    transform:
-        translateZ(190px)
-        rotateY(15deg);
-    animation: fb3d-card2 5.5s ease-in-out infinite;
-}
-
-.fb3d-float-4 {
-    right: calc(50% - 405px);
-    bottom: 23%;
-    transform:
-        translateZ(150px)
-        rotateY(-15deg);
-    animation: fb3d-card1 5.8s ease-in-out infinite;
+    height: 22px;
+    margin: 0 7%;
+    border-radius: 0 0 20px 20px;
+    background: linear-gradient(180deg, #111827, #030712);
+    box-shadow: 0 20px 35px rgba(0, 0, 0, 0.35);
 }
 
 .fb3d-side-object {
     position: absolute;
-    transform-style: preserve-3d;
-    pointer-events: none;
+    z-index: 4;
 }
 
 .fb3d-burger {
-    left: calc(50% - 480px);
-    bottom: 15%;
-    width: 105px;
-    height: 115px;
-    transform:
-        translateZ(210px)
-        rotateY(25deg)
-        rotateZ(-9deg);
-    animation: fb3d-food 6s ease-in-out infinite;
-    filter: drop-shadow(
-        0 24px 20px rgba(0,0,0,.4)
-    );
+    left: 3%;
+    bottom: 12%;
+    width: 120px;
+    transform: rotate(-8deg);
 }
 
-.fb3d-bun,
-.fb3d-patty,
-.fb3d-cheese,
-.fb3d-lettuce,
-.fb3d-tomato {
-    position: absolute;
-    left: 5%;
-    width: 90%;
+.fb3d-bun {
     border-radius: 50%;
-    box-shadow:
-        inset 0 -7px 0 rgba(0,0,0,.12),
-        inset 0 5px 8px rgba(255,255,255,.16);
+    background: linear-gradient(145deg, #fbbf24, #d97706);
 }
 
 .fb3d-bun-top {
-    top: 0;
-    height: 43px;
-    background: linear-gradient(
-        #e99a45,
-        #b95719
-    );
-    border-radius: 55% 55% 35% 35%;
+    height: 45px;
+    border-radius: 70px 70px 20px 20px;
 }
 
 .fb3d-lettuce {
-    top: 39px;
     height: 12px;
-    background: #5f9a3e;
+    background: #22c55e;
+    border-radius: 10px;
 }
 
 .fb3d-cheese {
-    top: 48px;
-    height: 12px;
-    background: #f5c83b;
-    clip-path: polygon(
-        0 0,
-        100% 0,
-        88% 100%,
-        62% 45%,
-        34% 100%,
-        12% 45%
-    );
+    height: 10px;
+    background: #facc15;
+    transform: skewX(-10deg);
 }
 
 .fb3d-patty {
-    top: 57px;
-    height: 24px;
-    background: linear-gradient(
-        #59321f,
-        #2c1810
-    );
+    height: 20px;
+    background: #451a03;
+    border-radius: 8px;
 }
 
 .fb3d-tomato {
-    top: 76px;
     height: 10px;
-    background: #d54832;
+    background: #ef4444;
 }
 
 .fb3d-bun-bottom {
-    top: 85px;
-    height: 27px;
-    background: linear-gradient(
-        #d2772e,
-        #914417
-    );
-    border-radius: 25% 25% 50% 50%;
+    height: 25px;
+    border-radius: 15px 15px 30px 30px;
 }
 
 .fb3d-fries {
-    right: calc(50% - 500px);
-    bottom: 17%;
-    width: 88px;
-    height: 120px;
-    transform:
-        translateZ(200px)
-        rotateY(-22deg)
-        rotateZ(8deg);
-    animation: fb3d-food 6.5s ease-in-out infinite;
+    right: 3%;
+    bottom: 12%;
+    width: 100px;
+    height: 110px;
+    transform: rotate(7deg);
 }
 
 .fb3d-fries i {
     position: absolute;
     bottom: 45px;
-    width: 12px;
-    height: 75px;
-    border-radius: 6px;
-    background: linear-gradient(
-        #f6ca43,
-        #e79c24
-    );
-    transform-origin: bottom;
-    box-shadow: inset 2px 0 rgba(255,255,255,.2);
+    width: 13px;
+    height: 70px;
+    border-radius: 5px;
+    background: #facc15;
 }
 
 .fb3d-fries i:nth-child(1) {
-    left: 13px;
-    transform: rotate(-13deg);
+    left: 8px;
+    transform: rotate(-12deg);
 }
 
 .fb3d-fries i:nth-child(2) {
     left: 27px;
-    height: 84px;
     transform: rotate(-5deg);
 }
 
 .fb3d-fries i:nth-child(3) {
-    left: 41px;
-    height: 88px;
-    transform: rotate(3deg);
+    left: 45px;
+    height: 78px;
 }
 
 .fb3d-fries i:nth-child(4) {
-    left: 55px;
-    height: 78px;
-    transform: rotate(10deg);
+    left: 63px;
+    transform: rotate(5deg);
 }
 
 .fb3d-fries i:nth-child(5) {
-    left: 69px;
-    height: 69px;
-    transform: rotate(17deg);
+    left: 80px;
+    transform: rotate(12deg);
 }
 
-.fb3d-fries div {
+.fb3d-fries > div {
     position: absolute;
-    bottom: 8px;
-    left: 7px;
-    width: 76px;
-    height: 54px;
-    background: linear-gradient(
-        90deg,
-        #e34722,
-        #b62d17
-    );
-    clip-path: polygon(
-        6% 0,
-        94% 0,
-        80% 100%,
-        20% 100%
-    );
-    box-shadow: inset 0 7px rgba(255,255,255,.12);
+    left: 5px;
+    bottom: 0;
+    width: 90px;
+    height: 60px;
+    border-radius: 8px 8px 20px 20px;
+    background: linear-gradient(145deg, #ef4444, #b91c1c);
 }
 
 .fb3d-caption {
     position: absolute;
-    left: 6%;
-    bottom: 6%;
+    left: 50%;
+    bottom: 3%;
     display: flex;
     align-items: center;
     gap: 10px;
-    color: #5d5650;
-    font: 800 8px Inter,sans-serif;
-    letter-spacing: .2em;
+    transform: translateX(-50%);
+    color: #6b7280;
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
 }
 
 .fb3d-caption-line {
-    width: 34px;
+    width: 30px;
     height: 1px;
-    background: #ff7626;
+    background: #6b7280;
 }
 
+/* =========================================================
+   POS LAYOUT — IMPORTANT MOBILE FIXES
+   ========================================================= */
 
-/* ================================================================
-   LOGIN ANIMATIONS
-   ================================================================ */
-
-@keyframes fb3d-float {
-    0%,100% {
-        margin-top: 0;
-    }
-
-    50% {
-        margin-top: -10px;
-    }
+/* Keep the desktop layout stable */
+body > .no-print {
+    min-width: 0;
 }
 
-@keyframes fb3d-pulse {
-    50% {
-        opacity: .4;
-        box-shadow: 0 0 3px #ff741f;
-    }
+body > .no-print > main {
+    min-width: 0;
 }
 
-@keyframes fb3d-card1 {
-    0%,100% {
-        margin-top: 0;
-    }
+/* =========================================================
+   PRODUCT CARDS
+   ========================================================= */
 
-    50% {
-        margin-top: -15px;
-    }
+#menu-grid {
+    min-width: 0;
 }
 
-@keyframes fb3d-card2 {
-    0%,100% {
-        margin-top: 0;
+#menu-grid > * {
+    min-width: 0;
+}
+
+/* =========================================================
+   CART
+   ========================================================= */
+
+#cart-list {
+    min-width: 0;
+}
+
+#cart-list > * {
+    min-width: 0;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1024px) {
+
+    /* Hide decorative login objects */
+    .fb3d-float-1,
+    .fb3d-float-2,
+    .fb3d-float-3,
+    .fb3d-float-4,
+    .fb3d-burger,
+    .fb3d-fries,
+    .fb3d-caption {
+        display: none;
     }
-
-    50% {
-        margin-top: 13px;
-    }
-}
-
-@keyframes fb3d-food {
-    0%,100% {
-        margin-top: 0;
-        rotate: 0deg;
-    }
-
-    50% {
-        margin-top: -18px;
-        rotate: 2deg;
-    }
-}
-
-.fb3d-login.fb3d-auth .fb3d-terminal {
-    animation: none;
-    transform:
-        translate(-50%,-48%)
-        rotateX(3deg)
-        rotateY(0)
-        translateZ(90px)
-        scale(1.025);
-    filter: drop-shadow(
-        0 55px 45px rgba(255,91,18,.2)
-    );
-}
-
-.fb3d-login.fb3d-auth .fb3d-submit {
-    box-shadow: 0 0 45px rgba(255,103,25,.45);
-}
-
-.fb3d-login.fb3d-success .fb3d-terminal {
-    animation: fb3d-enter .9s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-.fb3d-login.fb3d-success .fb3d-world {
-    animation: fb3d-world-exit .9s ease forwards;
-}
-
-@keyframes fb3d-enter {
-    0% {
-        transform:
-            translate(-50%,-48%)
-            rotateX(3deg)
-            translateZ(90px)
-            scale(1.025);
-    }
-
-    100% {
-        transform:
-            translate(-50%,-48%)
-            rotateX(0)
-            translateZ(500px)
-            scale(1.4);
-    }
-}
-
-@keyframes fb3d-world-exit {
-    to {
-        transform: scale(1.05) translateZ(80px);
-        opacity: .9;
-    }
-}
-
-
-/* ================================================================
-   LOGIN RESPONSIVE
-   ================================================================ */
-
-@media (max-width: 900px) {
 
     .fb3d-terminal {
-        width: min(560px, 86vw);
-        height: 650px;
-        transform:
-            translate(-50%,-49%)
-            rotateX(5deg)
-            rotateY(0)
-            translateZ(40px);
+        width: min(760px, 88vw);
+    }
+
+    /* POS right cart gets smaller */
+    body > .no-print > aside:last-child {
+        width: 320px !important;
+    }
+
+    /* Category sidebar */
+    #category-sidebar {
+        width: 72px !important;
+    }
+
+    main {
+        padding: 20px !important;
+    }
+}
+
+/* =========================================================
+   MOBILE — 768px AND BELOW
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        min-width: 0;
+    }
+
+    /* -----------------------------------------------------
+       LOGIN MOBILE
+       ----------------------------------------------------- */
+
+    .fb3d-login {
+        overflow-y: auto;
+    }
+
+    .fb3d-world {
+        min-height: 100%;
+        height: auto;
+        padding: 20px 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .fb3d-terminal {
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+        max-width: 430px;
+        transform: none;
+        margin: 0 auto;
+    }
+
+    .fb3d-terminal-top {
+        height: 42px;
+        padding: 0 14px;
+        border-radius: 16px 16px 0 0;
+        font-size: 9px;
+    }
+
+    .fb3d-terminal-code {
+        font-size: 7px;
     }
 
     .fb3d-terminal-body {
-        height: 550px;
-    }
-
-    .fb3d-terminal-screen {
-        height: 485px;
-    }
-
-    .fb3d-screen-ui {
-        padding: 28px 34px;
-    }
-
-    .fb3d-float-1 {
-        left: 3%;
-        top: 17%;
-    }
-
-    .fb3d-float-2 {
-        right: 3%;
-        top: 26%;
-    }
-
-    .fb3d-float-3 {
-        left: 4%;
-        bottom: 16%;
-    }
-
-    .fb3d-float-4 {
-        right: 4%;
-        bottom: 13%;
-    }
-
-    .fb3d-burger {
-        left: 3%;
-        bottom: 4%;
-        transform: translateZ(120px) scale(.75);
-    }
-
-    .fb3d-fries {
-        right: 3%;
-        bottom: 4%;
-        transform: translateZ(120px) scale(.72);
-    }
-}
-
-@media (max-width: 620px) {
-
-    .fb3d-terminal {
-        width: 92vw;
-        height: 610px;
-        transform:
-            translate(-50%,-50%)
-            rotateX(0)
-            translateZ(20px);
-    }
-
-    .fb3d-terminal-body {
-        height: 510px;
         padding: 10px;
     }
 
     .fb3d-terminal-screen {
-        height: 445px;
-        border-width: 5px;
+        border-radius: 9px;
     }
 
     .fb3d-screen-ui {
-        padding: 24px 22px;
+        padding: 25px 18px;
     }
 
     .fb3d-screen-brand {
-        margin-bottom: 18px;
+        margin-bottom: 16px;
+    }
+
+    .fb3d-logo-3d {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .fb3d-screen-brand strong {
+        font-size: 14px;
+    }
+
+    .fb3d-screen-brand small {
+        font-size: 6px;
     }
 
     .fb3d-screen-ui h1 {
-        font-size: 28px;
+        font-size: 25px;
     }
 
-    .fb3d-float-ticket {
-        display: none;
+    .fb3d-subtitle {
+        font-size: 11px;
+        margin-bottom: 20px;
     }
 
-    .fb3d-float-3,
-    .fb3d-float-4 {
-        display: none;
+    .fb3d-input {
+        height: 44px;
     }
 
-    .fb3d-burger {
-        left: -2%;
-        bottom: 2%;
-        opacity: .55;
+    .fb3d-submit {
+        height: 46px;
     }
 
-    .fb3d-fries {
-        right: -2%;
-        bottom: 2%;
-        opacity: .55;
+    .fb3d-screen-footer {
+        font-size: 6px;
+        margin-top: 18px;
     }
 
-    .fb3d-caption {
-        left: 22px;
-        bottom: 18px;
-    }
-
-    .fb3d-floor-grid {
-        bottom: -20%;
+    .fb3d-terminal-controls {
+        height: 34px;
+        padding: 0 14px;
     }
 
     .fb3d-terminal-base {
-        bottom: -30px;
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .fb3d-terminal,
-    .fb3d-floating,
-    .fb3d-side-object {
-        animation: none !important;
+        height: 15px;
+        margin: 0 5%;
     }
 
-    .fb3d-world {
-        transition: none;
-    }
-
-    .fb3d-login.fb3d-success .fb3d-terminal,
-    .fb3d-login.fb3d-success .fb3d-world {
-        animation: none;
-    }
-}
-
-
-/* ================================================================
-   UPI CHECKOUT
-   ================================================================ */
-
-#checkout-actions.upi-sticky-actions {
-    position: sticky;
-    bottom: 0;
-    z-index: 20;
-    background: #fff;
-    padding-top: 10px;
-    padding-bottom: 4px;
-}
-
-
-/* ================================================================
-   FASTBITE POS — MOBILE RESPONSIVE FIX
-   Desktop layout remains unchanged.
-   ================================================================ */
-
-@media (max-width: 768px) {
-
-    * {
-        box-sizing: border-box;
-    }
-
-    html,
-    body {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-        overflow-x: hidden !important;
-    }
-
-    body {
-        height: auto !important;
-        min-height: 100vh !important;
-        overflow-y: auto !important;
-    }
-
-
-    /* ---------------- HEADER ---------------- */
+    /* -----------------------------------------------------
+       NAVBAR
+       ----------------------------------------------------- */
 
     nav.no-print {
-        width: 100% !important;
-        max-width: 100% !important;
-        padding: 10px 14px !important;
-        gap: 10px !important;
-        display: flex !important;
-        flex-wrap: wrap !important;
+        height: auto !important;
+        min-height: 60px;
+        padding: 10px 12px !important;
+        gap: 10px;
+        flex-wrap: wrap;
     }
 
     nav.no-print > div:first-child {
-        width: 100% !important;
-        max-width: 100% !important;
-        justify-content: space-between !important;
+        width: 100%;
+        justify-content: space-between;
     }
 
     nav.no-print > div:first-child > div:first-child {
-        gap: 7px !important;
-        min-width: 0 !important;
-    }
-
-    nav.no-print > div:first-child > div:first-child span {
-        font-size: 18px !important;
+        flex-shrink: 0;
     }
 
     nav.no-print > div:last-child {
-        width: 100% !important;
-        justify-content: flex-end !important;
+        width: 100%;
+        justify-content: space-between;
         gap: 8px !important;
     }
 
-    #admin-btn {
+    nav.no-print .border-l {
+        border-left: 0 !important;
+        padding-left: 0 !important;
+    }
+
+    nav.no-print .text-right {
+        display: none !important;
+    }
+
+    nav.no-print .w-10 {
+        width: 34px !important;
+        height: 34px !important;
+        flex-shrink: 0;
+    }
+
+    nav.no-print .text-xl {
+        font-size: 17px !important;
+    }
+
+    nav.no-print #admin-btn {
         padding: 8px 10px !important;
         font-size: 11px !important;
     }
 
-    #logout-btn {
-        padding: 8px !important;
+    nav.no-print #logout-btn {
+        padding: 7px 8px !important;
     }
 
+    /* -----------------------------------------------------
+       MAIN POS FLEX CONTAINER
+       ----------------------------------------------------- */
 
-    /* ---------------- MAIN POS LAYOUT ---------------- */
-
-    nav.no-print + .flex.flex-1.overflow-hidden {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
+    body > .no-print {
         display: flex !important;
         flex-direction: column !important;
-
-        overflow: visible !important;
-        height: auto !important;
-        min-height: 0 !important;
+        width: 100% !important;
+        min-width: 0 !important;
+        height: calc(100vh - 110px) !important;
+        overflow: hidden !important;
     }
 
-
-    /* ---------------- CATEGORY SIDEBAR ---------------- */
+    /* -----------------------------------------------------
+       CATEGORY SIDEBAR
+       Turn vertical sidebar into horizontal category bar
+       ----------------------------------------------------- */
 
     #category-sidebar {
+        order: 1;
         width: 100% !important;
-        max-width: 100% !important;
-        height: 82px !important;
-        min-height: 82px !important;
-
-        display: flex !important;
+        height: 70px !important;
+        min-height: 70px !important;
+        flex: 0 0 70px !important;
         flex-direction: row !important;
-        flex-wrap: nowrap !important;
-
-        align-items: center !important;
         justify-content: flex-start !important;
-
-        overflow-x: auto !important;
-        overflow-y: hidden !important;
-
-        padding: 8px 12px !important;
+        align-items: center !important;
         gap: 10px !important;
-
+        padding: 8px 12px !important;
         border-right: 0 !important;
         border-bottom: 1px solid #e5e7eb !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        scrollbar-width: none;
+    }
+
+    #category-sidebar::-webkit-scrollbar {
+        display: none;
     }
 
     #category-sidebar > * {
         flex: 0 0 auto !important;
-        min-width: max-content !important;
     }
 
+    /* -----------------------------------------------------
+       MAIN CONTENT
+       ----------------------------------------------------- */
 
-    /* ---------------- MAIN CONTENT ---------------- */
-
-    nav.no-print + .flex.flex-1.overflow-hidden > main {
+    body > .no-print > main {
+        order: 2;
         width: 100% !important;
-        max-width: 100% !important;
         min-width: 0 !important;
-
-        flex: none !important;
-
+        flex: 1 1 auto !important;
         padding: 14px !important;
-
-        overflow: visible !important;
+        overflow-x: hidden !important;
+        overflow-y: auto !important;
     }
 
-    #pos-view {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    #pos-view > div:first-child {
-        width: 100% !important;
-        max-width: 100% !important;
-        margin-bottom: 14px !important;
-    }
-
+    /* Category heading */
     #active-category-title {
         font-size: 20px !important;
     }
 
+    #pos-view > div:first-child {
+        margin-bottom: 14px !important;
+        gap: 10px;
+    }
+
     #pos-view > div:first-child > div {
-        gap: 5px !important;
-        min-width: 0 !important;
+        flex-shrink: 0;
     }
 
     #pos-view > div:first-child button {
-        padding: 8px 10px !important;
+        padding: 7px 10px !important;
         font-size: 11px !important;
     }
 
-
-    /* ---------------- PRODUCT GRID ---------------- */
+    /* -----------------------------------------------------
+       PRODUCT GRID
+       ----------------------------------------------------- */
 
     #menu-grid {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        display: grid !important;
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 10px !important;
-    }
-
-    .menu-card {
         width: 100% !important;
+    }
+
+    #menu-grid > * {
         min-width: 0 !important;
-        max-width: 100% !important;
-    }
-
-    .menu-card img {
-        max-width: 100% !important;
-    }
-
-
-    /* ---------------- BILLING / CART SIDEBAR ---------------- */
-
-    nav.no-print + .flex.flex-1.overflow-hidden > aside:last-child {
         width: 100% !important;
-        max-width: 100% !important;
+    }
+
+    /* -----------------------------------------------------
+       RIGHT BILLING SIDEBAR
+       Put it BELOW PRODUCTS instead of forcing it beside them
+       ----------------------------------------------------- */
+
+    body > .no-print > aside:last-child {
+        order: 3;
+        width: 100% !important;
+        max-width: none !important;
         min-width: 0 !important;
-
-        flex: none !important;
-
+        height: auto !important;
+        max-height: none !important;
+        flex: 0 0 auto !important;
         border-left: 0 !important;
         border-top: 1px solid #e5e7eb !important;
     }
 
-
-    /* ---------------- ORDER SUMMARY ---------------- */
-
-    nav.no-print + .flex.flex-1.overflow-hidden > aside:last-child > div {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        padding: 16px !important;
+    /* On mobile the cart becomes a separate normal section */
+    body > .no-print > aside:last-child > div {
+        min-width: 0;
     }
 
+    /* Customer section */
+    body > .no-print > aside:last-child > div:first-child {
+        padding: 14px !important;
+    }
 
-    /* ---------------- CART ---------------- */
-
+    /* Cart */
     #cart-container {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-
-        min-height: 180px !important;
-        max-height: 360px !important;
-
+        min-height: 120px;
+        max-height: 260px;
+        padding: 14px !important;
         overflow-y: auto !important;
-
-        padding: 16px !important;
     }
 
-
-    /* ---------------- CHECKOUT ---------------- */
-
-    #checkout-actions {
-        width: 100% !important;
-        max-width: 100% !important;
-
-        display: grid !important;
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-
-        gap: 8px !important;
+    /* Summary */
+    body > .no-print > aside:last-child > div:last-child {
+        padding: 14px !important;
     }
 
-    #checkout-actions button {
-        width: 100% !important;
-        min-width: 0 !important;
+    /* -----------------------------------------------------
+       UPI
+       ----------------------------------------------------- */
 
-        font-size: 11px !important;
-        padding: 12px 8px !important;
-    }
-
-
-    /* ---------------- UPI ---------------- */
-
-    #upi-qr-box .grid {
-        gap: 8px !important;
-    }
-
-
-    /* ---------------- ORDER HISTORY ---------------- */
-
-    #history-view {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-    #history-view .flex.justify-between {
-        flex-direction: column !important;
-        align-items: stretch !important;
-        gap: 12px !important;
-    }
-
-    #history-search {
-        width: 100% !important;
-        max-width: 100% !important;
-        min-width: 0 !important;
-    }
-
-
-    /* ---------------- INPUT SAFETY ---------------- */
-
-    #cust-name,
-    #cust-mobile,
-    #history-search {
-        max-width: 100% !important;
-        min-width: 0 !important;
-        box-sizing: border-box !important;
-    }
-
-
-    /* ---------------- MODALS ---------------- */
-
-    #upi-payment-modal,
-    #success-modal {
-        width: 100% !important;
-        max-width: 100vw !important;
+    #upi-qr-box {
+        margin-top: 12px !important;
         padding: 12px !important;
     }
 
-    #upi-payment-modal > div,
-    #success-modal > div {
+    /* -----------------------------------------------------
+       HISTORY
+       ----------------------------------------------------- */
+
+    #history-content > div:first-child {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px;
+    }
+
+    #history-search {
         width: 100% !important;
-        max-width: calc(100vw - 24px) !important;
-        max-height: calc(100vh - 24px) !important;
-        overflow-y: auto !important;
+    }
+
+    #admin-login-card {
+        margin-top: 20px !important;
+        padding: 24px !important;
+    }
+
+    /* -----------------------------------------------------
+       MODALS
+       ----------------------------------------------------- */
+
+    #success-modal,
+    #upi-payment-modal {
+        padding: 12px !important;
+    }
+
+    #success-modal > div,
+    #upi-payment-modal > div {
+        max-width: 100% !important;
+        width: 100% !important;
+    }
+
+    #success-modal > div {
+        padding: 24px !important;
     }
 }
 
-
-/* ================================================================
-   SMALL PHONES
-   ================================================================ */
+/* =========================================================
+   SMALL MOBILE — 480px AND BELOW
+   ========================================================= */
 
 @media (max-width: 480px) {
 
-    html,
-    body {
-        width: 100% !important;
-        max-width: 100% !important;
-        overflow-x: hidden !important;
+    nav.no-print {
+        min-height: 56px;
+        padding: 8px 10px !important;
     }
 
-    nav.no-print {
-        padding: 8px 10px !important;
+    nav.no-print .text-xl {
+        font-size: 16px !important;
+    }
+
+    nav.no-print #admin-btn {
+        font-size: 10px !important;
+        padding: 7px 8px !important;
+    }
+
+    body > .no-print {
+        height: calc(100vh - 105px) !important;
     }
 
     #category-sidebar {
-        width: 100% !important;
-        height: 76px !important;
-        min-height: 76px !important;
-
-        padding: 8px 10px !important;
-        gap: 8px !important;
+        height: 62px !important;
+        min-height: 62px !important;
+        flex-basis: 62px !important;
+        padding: 7px 10px !important;
     }
 
-    #pos-view {
-        width: 100% !important;
+    body > .no-print > main {
         padding: 10px !important;
-    }
-
-    #menu-grid {
-        width: 100% !important;
-
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-
-        gap: 8px !important;
     }
 
     #active-category-title {
         font-size: 18px !important;
     }
 
-    nav.no-print + .flex.flex-1.overflow-hidden > aside:last-child > div {
-        padding: 14px !important;
+    #pos-view > div:first-child button {
+        padding: 6px 8px !important;
+        font-size: 10px !important;
     }
 
-    #cart-container {
-        min-height: 160px !important;
-        padding: 14px !important;
-    }
-
-    #checkout-actions {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr)) !important;
-
+    #menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
         gap: 8px !important;
     }
-}
 
-
-/* ================================================================
-   EXTRA MOBILE SAFETY
-   Prevents fixed-width elements from causing overflow.
-   ================================================================ */
-
-@media (max-width: 768px) {
-
-    #pos-view,
-    #history-view,
-    #history-content,
-    #menu-grid {
-        min-width: 0 !important;
-        max-width: 100% !important;
+    /* Prevent cards from becoming wider than viewport */
+    #menu-grid img {
+        max-width: 100%;
     }
 
-    #cust-name,
-    #cust-mobile,
-    #history-search {
-        width: 100% !important;
-        max-width: 100% !important;
-        box-sizing: border-box !important;
-    }
-
-    .menu-card {
-        min-width: 0 !important;
-        max-width: 100% !important;
-    }
-
-    #upi-payment-modal,
-    #success-modal {
+    /* Customer fields */
+    body > .no-print > aside:last-child > div:first-child {
         padding: 12px !important;
     }
 
-    #upi-payment-modal > div,
-    #success-modal > div {
-        max-width: calc(100vw - 24px) !important;
-        max-height: calc(100vh - 24px) !important;
-        overflow-y: auto !important;
+    #cart-container {
+        padding: 12px !important;
+        max-height: 220px;
     }
+
+    body > .no-print > aside:last-child > div:last-child {
+        padding: 12px !important;
+    }
+
+    #checkout-actions {
+        gap: 8px !important;
+    }
+
+    #checkout-actions button {
+        font-size: 11px !important;
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+    }
+
+    /* Login */
+    .fb3d-world {
+        padding: 12px 8px;
+    }
+
+    .fb3d-terminal {
+        max-width: 100%;
+    }
+
+    .fb3d-screen-ui {
+        padding: 22px 15px;
+    }
+
+    .fb3d-screen-ui h1 {
+        font-size: 23px;
+    }
+
+    .fb3d-terminal-top {
+        padding: 0 11px;
+        font-size: 8px;
+    }
+
+    .fb3d-screen-footer {
+        gap: 10px;
+    }
+
+    .fb3d-screen-footer span {
+        white-space: nowrap;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES — 360px AND BELOW
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    nav.no-print > div:last-child {
+        gap: 5px !important;
+    }
+
+    nav.no-print #admin-btn {
+        padding: 6px !important;
+    }
+
+    nav.no-print .w-10 {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    #menu-grid {
+        gap: 6px !important;
+    }
+
+    body > .no-print > main {
+        padding: 8px !important;
+    }
+
+    #active-category-title {
+        font-size: 16px !important;
+    }
+
+    #pos-view > div:first-child {
+        margin-bottom: 10px !important;
+    }
+
+    #pos-view > div:first-child button {
+        font-size: 9px !important;
+        padding: 5px 6px !important;
+    }
+
+    .fb3d-screen-ui {
+        padding: 18px 12px;
+    }
+
+    .fb3d-screen-ui h1 {
+        font-size: 21px;
+    }
+
+    .fb3d-subtitle {
+        font-size: 10px;
+    }
+}
+
+/* =========================================================
+   EXTRA SAFETY FOR DYNAMIC JS CONTENT
+   ========================================================= */
+
+img {
+    max-width: 100%;
+}
+
+svg {
+    max-width: 100%;
+}
+
+#menu-grid,
+#cart-list,
+#history-list {
+    overflow-wrap: anywhere;
+}
+
+/* Prevent long text from breaking mobile layout */
+#menu-grid *,
+#cart-list *,
+#history-list * {
+    min-width: 0;
+}
+
+/* Inputs must never exceed their parent */
+input,
+select,
+textarea {
+    max-width: 100%;
+}
+
+/* Modal safety */
+.fixed {
+    max-width: 100vw;
 }

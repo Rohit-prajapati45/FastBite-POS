@@ -1,9 +1,8 @@
 /* =========================================================
    FASTBITE POS — FINAL RESPONSIVE CSS
+   Exact match for the supplied FastBite POS HTML
    Desktop + Tablet + Mobile
    ========================================================= */
-
-/* ---------- BASE ---------- */
 
 * {
     box-sizing: border-box;
@@ -97,8 +96,6 @@ button {
     overflow: hidden;
 }
 
-/* Ambient background */
-
 .fb3d-ambient {
     position: absolute;
     border-radius: 50%;
@@ -121,8 +118,6 @@ button {
     bottom: -220px;
     background: rgba(251, 146, 60, 0.18);
 }
-
-/* Floor */
 
 .fb3d-floor-grid {
     position: absolute;
@@ -227,6 +222,7 @@ button {
 .fb3d-led {
     width: 8px;
     height: 8px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 12px rgba(34,197,94,0.8);
@@ -328,6 +324,7 @@ button {
 .fb3d-access-line span {
     width: 6px;
     height: 6px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: #22c55e;
     box-shadow: 0 0 8px rgba(34,197,94,0.7);
@@ -436,9 +433,15 @@ button {
     transform: translateY(1px);
 }
 
+.fb3d-submit:disabled {
+    cursor: not-allowed;
+    opacity: 0.75;
+}
+
 .fb3d-screen-footer {
     display: flex;
     justify-content: space-between;
+    gap: 12px;
     margin-top: 23px;
     padding-top: 14px;
     border-top: 1px solid #f3f4f6;
@@ -464,6 +467,7 @@ button {
 .fb3d-terminal-controls > span:not(.fb3d-control-wide) {
     width: 8px;
     height: 8px;
+    flex-shrink: 0;
     border-radius: 50%;
     background: #6b7280;
 }
@@ -489,6 +493,26 @@ button {
     border-radius: 0 0 22px 22px;
     border: 1px solid #4b5563;
     transform: translateZ(-8px);
+}
+
+/* ---------- LOGIN STATES USED BY SCRIPT ---------- */
+
+.fb3d-login.fb3d-auth .fb3d-terminal {
+    animation: fbAuthPulse 0.65s ease-in-out;
+}
+
+.fb3d-login.fb3d-success {
+    animation: fbLoginSuccess 0.65s ease-in forwards;
+}
+
+@keyframes fbAuthPulse {
+    0%, 100% { transform: rotateX(2deg) rotateY(-4deg) scale(1); }
+    50% { transform: rotateX(2deg) rotateY(-4deg) scale(1.015); }
+}
+
+@keyframes fbLoginSuccess {
+    from { opacity: 1; }
+    to { opacity: 0; visibility: hidden; }
 }
 
 /* ---------- BURGER ---------- */
@@ -640,6 +664,7 @@ button {
 
 nav.no-print {
     min-height: 68px;
+    flex-shrink: 0;
 }
 
 nav.no-print input {
@@ -652,10 +677,12 @@ nav.no-print input {
 
 body > .flex.flex-1 {
     min-height: 0;
+    flex: 1 1 auto;
 }
 
 #category-sidebar {
     min-width: 96px;
+    flex-shrink: 0;
 }
 
 #category-sidebar > * {
@@ -665,6 +692,7 @@ body > .flex.flex-1 {
 main {
     min-width: 0;
     min-height: 0;
+    flex: 1 1 auto;
 }
 
 main > * {
@@ -688,6 +716,7 @@ main > * {
 body > .flex.flex-1 > aside:last-child {
     min-width: 384px;
     max-width: 384px;
+    flex: 0 0 384px;
 }
 
 #cart-container {
@@ -703,6 +732,12 @@ body > .flex.flex-1 > aside:last-child {
 }
 
 @media print {
+    html,
+    body {
+        width: auto !important;
+        height: auto !important;
+    }
+
     body {
         overflow: visible !important;
         background: white !important;
@@ -749,6 +784,7 @@ body > .flex.flex-1 > aside:last-child {
     body > .flex.flex-1 > aside:last-child {
         min-width: 330px;
         max-width: 330px;
+        flex-basis: 330px;
     }
 
     #menu-grid {
@@ -784,15 +820,17 @@ body > .flex.flex-1 > aside:last-child {
 
     nav.no-print > div:first-child {
         min-width: 0;
-        flex: 1;
+        flex: 1 1 auto;
     }
 
     nav.no-print > div:first-child > div:first-child {
         gap: 7px;
+        min-width: 0;
     }
 
     nav.no-print .bg-orange-600 {
         padding: 7px;
+        flex-shrink: 0;
     }
 
     nav.no-print .bg-orange-600 i {
@@ -806,6 +844,7 @@ body > .flex.flex-1 > aside:last-child {
 
     nav.no-print > div:last-child {
         gap: 5px;
+        flex-shrink: 0;
     }
 
     #admin-btn {
@@ -866,6 +905,7 @@ body > .flex.flex-1 > aside:last-child {
         overflow-y: auto;
 
         border-right: 1px solid #e5e7eb;
+        background: #fff;
     }
 
     #category-sidebar > * {
@@ -886,6 +926,7 @@ body > .flex.flex-1 > aside:last-child {
 
         overflow-x: hidden;
         overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
     }
 
     #pos-view {
@@ -896,15 +937,18 @@ body > .flex.flex-1 > aside:last-child {
     #pos-view > .flex {
         gap: 8px;
         margin-bottom: 14px;
+        min-width: 0;
     }
 
     #active-category-title {
+        min-width: 0;
         font-size: 19px;
         line-height: 1.2;
     }
 
     #pos-view > .flex > div:last-child {
         gap: 5px;
+        flex-shrink: 0;
     }
 
     #pos-view > .flex > div:last-child button {
@@ -927,8 +971,6 @@ body > .flex.flex-1 > aside:last-child {
         min-width: 0;
     }
 
-    /* Make generated product cards fit */
-
     #menu-grid img {
         max-width: 100%;
     }
@@ -950,6 +992,7 @@ body > .flex.flex-1 > aside:last-child {
         width: 100% !important;
         min-width: 0 !important;
         max-width: none !important;
+        flex: none !important;
 
         height: 102px;
         min-height: 102px;
@@ -963,19 +1006,15 @@ body > .flex.flex-1 > aside:last-child {
         flex-direction: column;
     }
 
-    /* Compact billing header */
-
     body > .flex.flex-1 > aside:last-child > div:first-child {
         display: none;
     }
-
-    /* Cart area becomes hidden behind compact bar */
 
     #cart-container {
         display: none;
     }
 
-    /* Summary */
+    /* ---------- MOBILE SUMMARY ---------- */
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child {
         padding: 10px 12px;
@@ -985,6 +1024,7 @@ body > .flex.flex-1 > aside:last-child {
         align-items: center;
         gap: 10px;
         background: white;
+        overflow: visible;
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
@@ -1022,7 +1062,7 @@ body > .flex.flex-1 > aside:last-child {
     }
 
     body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 {
-        flex: 1;
+        flex: 1 1 auto;
         min-width: 0;
         margin: 0;
     }
@@ -1056,7 +1096,7 @@ body > .flex.flex-1 > aside:last-child {
         font-size: 19px;
     }
 
-    /* Checkout buttons */
+    /* ---------- CHECKOUT ---------- */
 
     #checkout-actions {
         width: 180px;
@@ -1072,10 +1112,7 @@ body > .flex.flex-1 > aside:last-child {
         line-height: 1.2;
     }
 
-    /* ---------- CUSTOMER INPUTS ----------
-       Keep available when JS requires them,
-       but do not waste mobile screen height.
-    */
+    /* ---------- CUSTOMER INPUTS ---------- */
 
     #cust-name,
     #cust-mobile {
@@ -1086,6 +1123,7 @@ body > .flex.flex-1 > aside:last-child {
 
     #history-view {
         width: 100%;
+        min-width: 0;
     }
 
     #history-content > .flex {
@@ -1096,6 +1134,7 @@ body > .flex.flex-1 > aside:last-child {
 
     #history-search {
         width: 100%;
+        max-width: none;
     }
 
     #admin-login-card {
@@ -1145,6 +1184,7 @@ body > .flex.flex-1 > aside:last-child {
 
     .fb3d-terminal {
         width: min(100%, 410px);
+        max-height: calc(100dvh - 30px);
         transform: none;
         filter: drop-shadow(0 25px 35px rgba(0,0,0,0.4));
     }
@@ -1277,6 +1317,7 @@ body > .flex.flex-1 > aside:last-child {
         padding-left: 70px;
         padding-right: 8px;
         padding-top: 10px;
+        padding-bottom: 112px;
     }
 
     #active-category-title {
@@ -1318,6 +1359,14 @@ body > .flex.flex-1 > aside:last-child {
     #summary-total {
         font-size: 17px;
     }
+
+    .fb3d-world {
+        padding: 10px;
+    }
+
+    .fb3d-screen-ui {
+        padding: 20px 16px 17px;
+    }
 }
 
 /* =========================================================
@@ -1325,6 +1374,15 @@ body > .flex.flex-1 > aside:last-child {
    ========================================================= */
 
 @media (max-width: 767px) and (orientation: landscape) {
+
+    .fb3d-world {
+        align-items: flex-start;
+        overflow-y: auto;
+    }
+
+    .fb3d-terminal {
+        margin: 8px 0;
+    }
 
     .fb3d-screen-ui {
         padding: 14px 25px;
@@ -1360,5 +1418,26 @@ body > .flex.flex-1 > aside:last-child {
 
     .fb3d-terminal-base {
         height: 8px;
+    }
+}
+
+/* =========================================================
+   ACCESSIBILITY / TOUCH SAFETY
+   ========================================================= */
+
+@media (hover: none) {
+    .fb3d-submit:hover {
+        transform: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
     }
 }

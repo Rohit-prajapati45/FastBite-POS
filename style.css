@@ -485,3 +485,74 @@ body { font-family: 'Inter', sans-serif; }
         font-size: 16px;
     }
 }
+
+/* =========================================================
+   MOBILE CART FUNCTIONALITY FIX — POS ONLY
+   Keeps the original login screen untouched.
+   The previous mobile rule hid #cart-container, so addToCart()
+   could run but the cart updates were invisible.
+   ========================================================= */
+@media (max-width: 767px) {
+    /* Reserve room for the real cart + billing controls. */
+    body > .flex.flex-1 > main {
+        padding-bottom: calc(min(58dvh, 520px) + 20px) !important;
+    }
+
+    /* Turn the existing desktop cart sidebar into a mobile bottom drawer. */
+    body > .flex.flex-1 > aside:last-child {
+        height: min(58dvh, 520px) !important;
+        min-height: 300px !important;
+        max-height: 520px !important;
+        border-radius: 18px 18px 0 0;
+        overflow: hidden;
+        background: #fff;
+    }
+
+    /* Keep the existing order/customer section instead of removing it. */
+    body > .flex.flex-1 > aside:last-child > div:first-child {
+        display: block !important;
+        flex-shrink: 0;
+        padding: 12px 14px !important;
+    }
+
+    /* IMPORTANT: show the actual cart DOM. JavaScript already updates it. */
+    #cart-container {
+        display: block !important;
+        flex: 1 1 auto !important;
+        min-height: 80px !important;
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 12px 14px !important;
+    }
+
+    /* Keep the payment/total/checkout section at the bottom. */
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child {
+        height: auto !important;
+        min-height: 0 !important;
+        flex-shrink: 0 !important;
+        padding: 10px 12px !important;
+        overflow: visible !important;
+    }
+
+    /* Cart quantity buttons must remain clickable above the drawer contents. */
+    #cart-list,
+    #cart-list button {
+        pointer-events: auto !important;
+    }
+
+    #checkout-actions {
+        width: 180px;
+        flex-shrink: 0;
+    }
+}
+
+@media (max-width: 420px) {
+    body > .flex.flex-1 > main {
+        padding-bottom: calc(min(62dvh, 500px) + 20px) !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child {
+        height: min(62dvh, 500px) !important;
+        min-height: 280px !important;
+    }
+}

@@ -1676,3 +1676,72 @@ body > .flex.flex-1 > aside:last-child {
         flex-basis: 118px;
     }
 }
+
+
+/* =========================================================
+   FASTBITE — MOBILE UPI CONTROLS FIX
+   Only affects UPI controls on mobile.
+   ========================================================= */
+@media (max-width: 767px) {
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box {
+        display: block !important;
+        position: static !important;
+        width: 100% !important;
+        max-height: none !important;
+        overflow: visible !important;
+        transform: none !important;
+        box-shadow: none !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) !important;
+        gap: 8px !important;
+        width: 100% !important;
+        margin-top: 10px !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 44px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        white-space: nowrap !important;
+    }
+
+    #upi-payment-modal {
+        overflow-y: auto !important;
+        padding: 12px !important;
+    }
+
+    #upi-payment-modal.hidden {
+        display: none !important;
+    }
+
+    #upi-payment-modal > div {
+        width: 100% !important;
+        max-width: 380px !important;
+        max-height: calc(100dvh - 24px) !important;
+        overflow-y: auto !important;
+    }
+
+    #upi-payment-modal > div > .p-6 > .grid {
+        display: grid !important;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) !important;
+        gap: 10px !important;
+        width: 100% !important;
+        margin-top: 14px !important;
+    }
+
+    #upi-payment-modal > div > .p-6 > .grid button {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-height: 46px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        white-space: nowrap !important;
+    }
+}

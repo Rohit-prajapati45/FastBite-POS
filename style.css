@@ -1745,3 +1745,70 @@ body > .flex.flex-1 > aside:last-child {
         white-space: nowrap !important;
     }
 }
+
+
+/* =========================================================
+   FASTBITE — UPI PANEL VISIBILITY + LIVE AMOUNT
+   Only fixes UPI payment presentation/visibility.
+   ========================================================= */
+#upi-qr-box {
+    max-height: 330px;
+    overflow-y: auto;
+}
+
+#upi-qr-box > div {
+    width: 128px !important;
+    height: 128px !important;
+}
+
+#upi-qr-box .grid {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    padding-top: 8px;
+    padding-bottom: 2px;
+}
+
+#upi-qr-box .grid button {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: visible;
+    opacity: 1;
+}
+
+@media (max-width: 767px) {
+    #upi-qr-box > div {
+        width: 118px !important;
+        height: 118px !important;
+    }
+}
+
+/* FINAL UPI MOBILE VISIBILITY FIX */
+@media (max-width: 767px) {
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open > .p-6:last-child {
+        max-height: 62dvh !important;
+        overflow-y: auto !important;
+        padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
+    }
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box {
+        display: block !important;
+        overflow: visible !important;
+        max-height: none !important;
+    }
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1.35fr !important;
+        position: static !important;
+        margin-top: 14px !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid button {
+        display: flex !important;
+        min-height: 48px !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+}

@@ -1,0 +1,1678 @@
+/* =========================================================
+   FASTBITE POS — FINAL RESPONSIVE CSS
+   Desktop + Tablet + Mobile
+   ========================================================= */
+
+/* ---------- BASE ---------- */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: "Inter", sans-serif;
+}
+
+body {
+    overflow: hidden;
+}
+
+button,
+input {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* ---------- SCROLLBAR ---------- */
+
+.custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: #d1d5db transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 10px;
+}
+
+/* ---------- ANIMATIONS ---------- */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.25s ease-out;
+}
+
+/* =========================================================
+   LOGIN SCREEN
+   ========================================================= */
+
+.fb3d-login {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    width: 100%;
+    height: 100dvh;
+    overflow: hidden;
+    background:
+        radial-gradient(circle at 50% 25%, #fff7ed 0%, transparent 38%),
+        linear-gradient(135deg, #111827, #1f2937 55%, #111827);
+}
+
+.fb3d-world {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    perspective: 1400px;
+    overflow: hidden;
+}
+
+/* Ambient background */
+
+.fb3d-ambient {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+}
+
+.fb3d-ambient-a {
+    width: 420px;
+    height: 420px;
+    top: -150px;
+    left: -120px;
+    background: rgba(249, 115, 22, 0.35);
+}
+
+.fb3d-ambient-b {
+    width: 500px;
+    height: 500px;
+    right: -180px;
+    bottom: -220px;
+    background: rgba(251, 146, 60, 0.18);
+}
+
+/* Floor */
+
+.fb3d-floor-grid {
+    position: absolute;
+    width: 140%;
+    height: 55%;
+    bottom: -28%;
+    left: -20%;
+    opacity: 0.12;
+    background-image:
+        linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px);
+    background-size: 55px 55px;
+    transform: perspective(500px) rotateX(65deg);
+}
+
+/* ---------- FLOATING ELEMENTS ---------- */
+
+.fb3d-floating {
+    position: absolute;
+    z-index: 2;
+    color: white;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    pointer-events: none;
+}
+
+.fb3d-float-ticket {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 13px 16px;
+    border-radius: 12px;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+}
+
+.fb3d-float-ticket b {
+    color: #fb923c;
+    font-size: 9px;
+}
+
+.fb3d-float-1 {
+    left: 8%;
+    top: 22%;
+    transform: rotate(-8deg);
+}
+
+.fb3d-float-2 {
+    right: 7%;
+    top: 28%;
+    transform: rotate(8deg);
+}
+
+.fb3d-float-chip {
+    padding: 10px 14px;
+    border-radius: 999px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.fb3d-float-3 {
+    left: 10%;
+    bottom: 25%;
+}
+
+.fb3d-float-4 {
+    right: 10%;
+    bottom: 21%;
+}
+
+/* =========================================================
+   3D TERMINAL
+   ========================================================= */
+
+.fb3d-terminal {
+    position: relative;
+    z-index: 5;
+    width: min(680px, 68vw);
+    transform-style: preserve-3d;
+    transform: rotateX(2deg) rotateY(-4deg);
+    filter: drop-shadow(0 45px 45px rgba(0,0,0,0.35));
+}
+
+.fb3d-terminal-top {
+    height: 42px;
+    padding: 0 18px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: #d1d5db;
+    background: linear-gradient(180deg, #374151, #1f2937);
+    border-radius: 18px 18px 0 0;
+    border: 1px solid #4b5563;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+
+.fb3d-led {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 12px rgba(34,197,94,0.8);
+}
+
+.fb3d-terminal-code {
+    margin-left: auto;
+    opacity: 0.5;
+    font-size: 8px;
+}
+
+.fb3d-terminal-body {
+    padding: 14px;
+    background: linear-gradient(145deg, #374151, #111827);
+    border-left: 1px solid #4b5563;
+    border-right: 1px solid #4b5563;
+}
+
+.fb3d-terminal-screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 12px;
+    background: #fff;
+    box-shadow:
+        inset 0 0 0 1px rgba(0,0,0,0.08),
+        0 5px 20px rgba(0,0,0,0.3);
+}
+
+.fb3d-screen-depth {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(110deg, rgba(255,255,255,0.4), transparent 25%),
+        linear-gradient(180deg, rgba(249,115,22,0.03), transparent);
+}
+
+.fb3d-screen-ui {
+    position: relative;
+    padding: 38px 46px 30px;
+}
+
+.fb3d-screen-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+}
+
+.fb3d-logo-3d {
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    color: white;
+    font-size: 22px;
+    font-weight: 800;
+    background: linear-gradient(145deg, #fb923c, #ea580c);
+    box-shadow:
+        0 7px 0 #c2410c,
+        0 12px 20px rgba(234,88,12,0.25);
+}
+
+.fb3d-screen-brand strong {
+    display: block;
+    color: #1f2937;
+    font-size: 17px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+
+.fb3d-screen-brand strong span {
+    color: #ea580c;
+}
+
+.fb3d-screen-brand small {
+    display: block;
+    margin-top: 4px;
+    color: #9ca3af;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+}
+
+.fb3d-access-line {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    margin-bottom: 12px;
+    color: #f97316;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+}
+
+.fb3d-access-line span {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    box-shadow: 0 0 8px rgba(34,197,94,0.7);
+}
+
+.fb3d-screen-ui h1 {
+    margin: 0;
+    color: #111827;
+    font-size: 28px;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+}
+
+.fb3d-subtitle {
+    margin: 7px 0 25px;
+    color: #6b7280;
+    font-size: 11px;
+}
+
+.fb3d-form {
+    width: 100%;
+}
+
+.fb3d-field {
+    margin-bottom: 15px;
+}
+
+.fb3d-field label {
+    display: block;
+    margin-bottom: 6px;
+    color: #9ca3af;
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+}
+
+.fb3d-input {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.fb3d-input > i {
+    position: absolute;
+    left: 13px;
+    color: #9ca3af;
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.fb3d-input input {
+    width: 100%;
+    height: 44px;
+    padding: 0 42px;
+    color: #1f2937;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    outline: none;
+    font-size: 11px;
+    transition: 0.2s ease;
+}
+
+.fb3d-input input:focus {
+    background: white;
+    border-color: #f97316;
+    box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
+}
+
+.fb3d-input button {
+    position: absolute;
+    right: 11px;
+    border: 0;
+    background: transparent;
+    color: #9ca3af;
+    padding: 5px;
+}
+
+.fb3d-error {
+    margin: 8px 0;
+    color: #ef4444;
+    font-size: 9px;
+    font-weight: 700;
+}
+
+.fb3d-submit {
+    width: 100%;
+    height: 45px;
+    margin-top: 4px;
+    border: 0;
+    border-radius: 10px;
+    color: white;
+    background: linear-gradient(135deg, #f97316, #ea580c);
+    box-shadow: 0 10px 20px rgba(234,88,12,0.22);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    transition: 0.2s ease;
+}
+
+.fb3d-submit:hover {
+    transform: translateY(-1px);
+}
+
+.fb3d-submit:active {
+    transform: translateY(1px);
+}
+
+.fb3d-screen-footer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 23px;
+    padding-top: 14px;
+    border-top: 1px solid #f3f4f6;
+    color: #9ca3af;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+/* ---------- TERMINAL CONTROLS ---------- */
+
+.fb3d-terminal-controls {
+    height: 45px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 16px;
+    background: linear-gradient(180deg, #1f2937, #111827);
+    border-left: 1px solid #4b5563;
+    border-right: 1px solid #4b5563;
+}
+
+.fb3d-terminal-controls > span:not(.fb3d-control-wide) {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6b7280;
+}
+
+.fb3d-terminal-controls b {
+    margin-left: 8px;
+    color: #6b7280;
+    font-size: 7px;
+    letter-spacing: 0.15em;
+}
+
+.fb3d-control-wide {
+    width: 70px;
+    height: 7px;
+    margin-left: auto;
+    border-radius: 5px;
+    background: #374151;
+}
+
+.fb3d-terminal-base {
+    height: 18px;
+    background: linear-gradient(180deg, #4b5563, #1f2937);
+    border-radius: 0 0 22px 22px;
+    border: 1px solid #4b5563;
+    transform: translateZ(-8px);
+}
+
+/* ---------- BURGER ---------- */
+
+.fb3d-side-object {
+    position: absolute;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.fb3d-burger {
+    width: 100px;
+    height: 120px;
+    right: 8%;
+    bottom: 12%;
+    transform: rotate(-10deg);
+}
+
+.fb3d-bun,
+.fb3d-lettuce,
+.fb3d-cheese,
+.fb3d-patty,
+.fb3d-tomato {
+    position: absolute;
+    left: 0;
+    width: 100%;
+}
+
+.fb3d-bun-top {
+    top: 0;
+    height: 45px;
+    border-radius: 50% 50% 18% 18%;
+    background: linear-gradient(#fbbf74, #d97706);
+}
+
+.fb3d-lettuce {
+    top: 38px;
+    height: 10px;
+    border-radius: 50%;
+    background: #65a30d;
+}
+
+.fb3d-cheese {
+    top: 46px;
+    height: 10px;
+    background: #facc15;
+}
+
+.fb3d-patty {
+    top: 55px;
+    height: 20px;
+    border-radius: 5px;
+    background: #7c2d12;
+}
+
+.fb3d-tomato {
+    top: 74px;
+    height: 10px;
+    background: #ef4444;
+}
+
+.fb3d-bun-bottom {
+    top: 82px;
+    height: 28px;
+    border-radius: 12% 12% 40% 40%;
+    background: linear-gradient(#f59e0b, #b45309);
+}
+
+/* ---------- FRIES ---------- */
+
+.fb3d-fries {
+    width: 80px;
+    height: 105px;
+    left: 8%;
+    bottom: 12%;
+}
+
+.fb3d-fries i {
+    position: absolute;
+    top: 0;
+    width: 11px;
+    height: 55px;
+    border-radius: 4px;
+    background: #facc15;
+    transform: rotate(-8deg);
+}
+
+.fb3d-fries i:nth-child(1) {
+    left: 10px;
+    height: 62px;
+}
+
+.fb3d-fries i:nth-child(2) {
+    left: 25px;
+    height: 70px;
+}
+
+.fb3d-fries i:nth-child(3) {
+    left: 40px;
+    height: 63px;
+}
+
+.fb3d-fries i:nth-child(4) {
+    left: 55px;
+    height: 68px;
+}
+
+.fb3d-fries i:nth-child(5) {
+    left: 67px;
+    height: 57px;
+}
+
+.fb3d-fries > div {
+    position: absolute;
+    left: 10px;
+    top: 48px;
+    width: 65px;
+    height: 55px;
+    border-radius: 6px 6px 16px 16px;
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+/* ---------- CAPTION ---------- */
+
+.fb3d-caption {
+    position: absolute;
+    left: 50%;
+    bottom: 3%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255,255,255,0.4);
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+}
+
+.fb3d-caption-line {
+    width: 35px;
+    height: 1px;
+    background: rgba(255,255,255,0.25);
+}
+
+/* =========================================================
+   POS NAVIGATION
+   ========================================================= */
+
+nav.no-print {
+    min-height: 68px;
+}
+
+nav.no-print input {
+    max-width: 320px;
+}
+
+/* =========================================================
+   MAIN POS STRUCTURE
+   ========================================================= */
+
+body > .flex.flex-1 {
+    min-height: 0;
+}
+
+#category-sidebar {
+    min-width: 96px;
+}
+
+#category-sidebar > * {
+    max-width: 82px;
+}
+
+main {
+    min-width: 0;
+    min-height: 0;
+}
+
+main > * {
+    min-width: 0;
+}
+
+/* Menu grid */
+
+#menu-grid {
+    width: 100%;
+}
+
+#menu-grid > * {
+    min-width: 0;
+}
+
+/* =========================================================
+   CART / RIGHT SIDEBAR
+   ========================================================= */
+
+body > .flex.flex-1 > aside:last-child {
+    min-width: 384px;
+    max-width: 384px;
+}
+
+#cart-container {
+    min-height: 0;
+}
+
+/* =========================================================
+   PRINT
+   ========================================================= */
+
+.print-only {
+    display: none;
+}
+
+@media print {
+    body {
+        overflow: visible !important;
+        background: white !important;
+    }
+
+    .no-print,
+    #app-login,
+    #upi-payment-modal,
+    #success-modal {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 1100px) {
+
+    nav.no-print {
+        padding-left: 18px;
+        padding-right: 18px;
+    }
+
+    nav.no-print .gap-8 {
+        gap: 15px;
+    }
+
+    #category-sidebar {
+        width: 78px;
+        min-width: 78px;
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    main {
+        padding: 18px;
+    }
+
+    body > .flex.flex-1 > aside:last-child {
+        min-width: 330px;
+        max-width: 330px;
+    }
+
+    #menu-grid {
+        gap: 14px;
+    }
+}
+
+/* =========================================================
+   MOBILE — COMPLETE POS REWORK
+   ========================================================= */
+
+@media (max-width: 767px) {
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    body {
+        min-width: 0;
+    }
+
+    /* ---------- NAVBAR ---------- */
+
+    nav.no-print {
+        min-height: 58px;
+        height: 58px;
+        padding: 8px 12px;
+        gap: 8px;
+    }
+
+    nav.no-print > div:first-child {
+        min-width: 0;
+        flex: 1;
+    }
+
+    nav.no-print > div:first-child > div:first-child {
+        gap: 7px;
+    }
+
+    nav.no-print .bg-orange-600 {
+        padding: 7px;
+    }
+
+    nav.no-print .bg-orange-600 i {
+        font-size: 16px;
+    }
+
+    nav.no-print .text-xl {
+        font-size: 16px;
+        white-space: nowrap;
+    }
+
+    nav.no-print > div:last-child {
+        gap: 5px;
+    }
+
+    #admin-btn {
+        padding: 7px 8px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    #admin-btn i {
+        margin-right: 3px !important;
+    }
+
+    #logout-btn {
+        padding: 5px;
+        font-size: 9px;
+    }
+
+    nav.no-print .border-l {
+        border-left: 0;
+        padding-left: 0;
+    }
+
+    nav.no-print .w-10 {
+        width: 32px;
+        height: 32px;
+        flex-shrink: 0;
+        font-size: 10px;
+    }
+
+    /* ---------- MAIN APP ---------- */
+
+    body > .flex.flex-1 {
+        position: relative;
+        display: block !important;
+        width: 100%;
+        height: calc(100dvh - 58px);
+        min-height: 0;
+        overflow: hidden;
+    }
+
+    /* ---------- CATEGORY SIDEBAR ---------- */
+
+    #category-sidebar {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 20;
+
+        width: 66px;
+        min-width: 66px;
+        height: 100%;
+
+        padding: 12px 5px;
+        gap: 10px;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+
+        border-right: 1px solid #e5e7eb;
+    }
+
+    #category-sidebar > * {
+        width: 56px;
+        max-width: 56px;
+        flex-shrink: 0;
+    }
+
+    /* ---------- MAIN CONTENT ---------- */
+
+    body > .flex.flex-1 > main {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+
+        padding: 14px 12px 120px 78px;
+
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    #pos-view {
+        width: 100%;
+        min-width: 0;
+    }
+
+    #pos-view > .flex {
+        gap: 8px;
+        margin-bottom: 14px;
+    }
+
+    #active-category-title {
+        font-size: 19px;
+        line-height: 1.2;
+    }
+
+    #pos-view > .flex > div:last-child {
+        gap: 5px;
+    }
+
+    #pos-view > .flex > div:last-child button {
+        padding: 7px 9px;
+        font-size: 10px;
+        white-space: nowrap;
+    }
+
+    /* ---------- MENU GRID ---------- */
+
+    #menu-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 10px !important;
+        width: 100%;
+    }
+
+    #menu-grid > * {
+        width: 100%;
+        min-width: 0;
+    }
+
+    /* Make generated product cards fit */
+
+    #menu-grid img {
+        max-width: 100%;
+    }
+
+    #menu-grid button {
+        max-width: 100%;
+    }
+
+    /* ---------- BILLING SIDEBAR ---------- */
+
+    body > .flex.flex-1 > aside:last-child {
+        position: fixed;
+        z-index: 50;
+
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        width: 100% !important;
+        min-width: 0 !important;
+        max-width: none !important;
+
+        height: 102px;
+        min-height: 102px;
+
+        border-left: 0;
+        border-top: 1px solid #e5e7eb;
+
+        box-shadow: 0 -8px 25px rgba(0,0,0,0.12);
+
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Compact billing header */
+
+    body > .flex.flex-1 > aside:last-child > div:first-child {
+        display: none;
+    }
+
+    /* Cart area becomes hidden behind compact bar */
+
+    #cart-container {
+        display: none;
+    }
+
+    /* Summary */
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child {
+        padding: 10px 12px;
+        height: 100%;
+        min-height: 0;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: white;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
+        margin: 0;
+        width: 110px;
+        flex-shrink: 0;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 > label {
+        display: none;
+    }
+
+    #pay-cash,
+    #pay-upi {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: 10px;
+    }
+
+    #pay-cash i,
+    #pay-upi i {
+        margin-right: 3px !important;
+    }
+
+    #upi-qr-box {
+        position: fixed;
+        left: 50%;
+        bottom: 115px;
+        transform: translateX(-50%);
+        width: min(92vw, 350px);
+        max-height: calc(100dvh - 140px);
+        overflow-y: auto;
+        z-index: 100;
+        box-shadow: 0 20px 50px rgba(0,0,0,0.25);
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 {
+        flex: 1;
+        min-width: 0;
+        margin: 0;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div {
+        font-size: 10px;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:nth-child(1),
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:nth-child(2) {
+        display: none;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:last-child {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .space-y-2 > div:last-child span:first-child {
+        font-size: 9px;
+        color: #9ca3af;
+        text-transform: uppercase;
+    }
+
+    #summary-total {
+        font-size: 19px;
+    }
+
+    /* Checkout buttons */
+
+    #checkout-actions {
+        width: 180px;
+        flex-shrink: 0;
+        gap: 6px;
+        margin: 0;
+    }
+
+    #checkout-actions button {
+        padding: 11px 5px;
+        border-radius: 12px;
+        font-size: 9px;
+        line-height: 1.2;
+    }
+
+    /* ---------- CUSTOMER INPUTS ----------
+       Keep available when JS requires them,
+       but do not waste mobile screen height.
+    */
+
+    #cust-name,
+    #cust-mobile {
+        font-size: 11px;
+    }
+
+    /* ---------- HISTORY ---------- */
+
+    #history-view {
+        width: 100%;
+    }
+
+    #history-content > .flex {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    #history-search {
+        width: 100%;
+    }
+
+    #admin-login-card {
+        margin-top: 25px;
+        padding: 22px;
+    }
+
+    /* ---------- MODALS ---------- */
+
+    #upi-payment-modal,
+    #success-modal {
+        padding: 12px;
+    }
+
+    #upi-payment-modal > div,
+    #success-modal > div {
+        width: 100%;
+        max-width: 380px;
+        max-height: calc(100dvh - 24px);
+        overflow-y: auto;
+    }
+
+    #success-modal .p-10 {
+        padding: 24px 18px;
+    }
+
+    #success-modal .w-24 {
+        width: 68px;
+        height: 68px;
+    }
+
+    #success-modal .text-5xl {
+        font-size: 32px;
+    }
+
+    /* ---------- LOGIN MOBILE ---------- */
+
+    .fb3d-login {
+        height: 100dvh;
+    }
+
+    .fb3d-world {
+        min-height: 100dvh;
+        padding: 15px;
+        perspective: none;
+    }
+
+    .fb3d-terminal {
+        width: min(100%, 410px);
+        transform: none;
+        filter: drop-shadow(0 25px 35px rgba(0,0,0,0.4));
+    }
+
+    .fb3d-terminal-top {
+        height: 34px;
+        padding: 0 12px;
+        border-radius: 13px 13px 0 0;
+        font-size: 8px;
+    }
+
+    .fb3d-terminal-code {
+        font-size: 6px;
+    }
+
+    .fb3d-terminal-body {
+        padding: 8px;
+    }
+
+    .fb3d-screen-ui {
+        padding: 25px 20px 20px;
+    }
+
+    .fb3d-logo-3d {
+        width: 36px;
+        height: 36px;
+        font-size: 18px;
+        border-radius: 10px;
+    }
+
+    .fb3d-screen-brand {
+        gap: 9px;
+        margin-bottom: 13px;
+    }
+
+    .fb3d-screen-brand strong {
+        font-size: 14px;
+    }
+
+    .fb3d-screen-brand small {
+        font-size: 6px;
+    }
+
+    .fb3d-screen-ui h1 {
+        font-size: 23px;
+    }
+
+    .fb3d-subtitle {
+        margin-bottom: 19px;
+        font-size: 10px;
+    }
+
+    .fb3d-field {
+        margin-bottom: 11px;
+    }
+
+    .fb3d-input input {
+        height: 40px;
+        font-size: 10px;
+    }
+
+    .fb3d-submit {
+        height: 41px;
+        font-size: 9px;
+    }
+
+    .fb3d-screen-footer {
+        margin-top: 16px;
+        padding-top: 10px;
+        font-size: 6px;
+    }
+
+    .fb3d-terminal-controls {
+        height: 32px;
+        padding: 0 11px;
+    }
+
+    .fb3d-terminal-base {
+        height: 12px;
+        border-radius: 0 0 14px 14px;
+    }
+
+    .fb3d-burger,
+    .fb3d-fries,
+    .fb3d-floating,
+    .fb3d-caption {
+        display: none;
+    }
+
+    .fb3d-floor-grid {
+        opacity: 0.06;
+    }
+}
+
+/* =========================================================
+   VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    nav.no-print {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    nav.no-print .text-xl {
+        font-size: 14px;
+    }
+
+    nav.no-print .bg-orange-600 {
+        padding: 6px;
+    }
+
+    #admin-btn {
+        font-size: 9px;
+        padding: 6px;
+    }
+
+    #category-sidebar {
+        width: 60px;
+        min-width: 60px;
+    }
+
+    #category-sidebar > * {
+        width: 50px;
+        max-width: 50px;
+    }
+
+    body > .flex.flex-1 > main {
+        padding-left: 70px;
+        padding-right: 8px;
+        padding-top: 10px;
+    }
+
+    #active-category-title {
+        font-size: 17px;
+    }
+
+    #pos-view > .flex > div:last-child button {
+        padding: 6px 7px;
+        font-size: 8px;
+    }
+
+    #menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+        gap: 8px !important;
+    }
+
+    #checkout-actions {
+        width: 160px;
+    }
+
+    #checkout-actions button {
+        font-size: 8px;
+    }
+
+    body > .flex.flex-1 > aside:last-child {
+        height: 96px;
+        min-height: 96px;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child {
+        padding: 8px;
+        gap: 6px;
+    }
+
+    body > .flex.flex-1 > aside:last-child > .p-6:last-child > .mb-4 {
+        width: 95px;
+    }
+
+    #summary-total {
+        font-size: 17px;
+    }
+}
+
+/* =========================================================
+   LANDSCAPE MOBILE
+   ========================================================= */
+
+@media (max-width: 767px) and (orientation: landscape) {
+
+    .fb3d-screen-ui {
+        padding: 14px 25px;
+    }
+
+    .fb3d-screen-brand {
+        margin-bottom: 8px;
+    }
+
+    .fb3d-subtitle {
+        margin-bottom: 10px;
+    }
+
+    .fb3d-field {
+        margin-bottom: 7px;
+    }
+
+    .fb3d-input input {
+        height: 34px;
+    }
+
+    .fb3d-submit {
+        height: 36px;
+    }
+
+    .fb3d-screen-footer {
+        display: none;
+    }
+
+    .fb3d-terminal-controls {
+        height: 25px;
+    }
+
+    .fb3d-terminal-base {
+        height: 8px;
+    }
+}
+
+/* =========================================================
+   FINAL MOBILE FUNCTIONALITY + HISTORY DETAIL FIX
+   Desktop/login styling above is preserved.
+   ========================================================= */
+
+.history-info-box {
+    background: #fff;
+    border: 1px solid #f1f5f9;
+    border-radius: 12px;
+    padding: 10px 12px;
+    min-width: 0;
+}
+
+.history-info-box span {
+    display: block;
+    color: #9ca3af;
+    font-size: 9px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    margin-bottom: 3px;
+}
+
+.history-info-box strong {
+    display: block;
+    color: #374151;
+    font-size: 12px;
+    overflow-wrap: anywhere;
+}
+
+.history-item-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.history-item-row:last-child { border-bottom: 0; }
+
+#mobile-cart-toggle,
+#mobile-cart-close {
+    display: none;
+}
+
+@media (max-width: 767px) {
+    /* Do not let the bottom billing bar cover the actual scrollable POS content. */
+    body > .flex.flex-1 > main {
+        padding-bottom: 125px !important;
+    }
+
+    /* Compact always-visible cart launcher. It does not replace any desktop control. */
+    #mobile-cart-toggle {
+        position: fixed;
+        right: 12px;
+        bottom: 113px;
+        z-index: 60;
+        display: flex;
+        align-items: center;
+        gap: 7px;
+        min-height: 42px;
+        padding: 9px 12px;
+        border: 1px solid #fed7aa;
+        border-radius: 14px;
+        background: #fff7ed;
+        color: #ea580c;
+        box-shadow: 0 8px 24px rgba(0,0,0,.12);
+        font-size: 11px;
+        font-weight: 800;
+    }
+
+    #mobile-cart-toggle b {
+        min-width: 20px;
+        height: 20px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        background: #ea580c;
+        color: #fff;
+        font-size: 9px;
+    }
+
+    #mobile-cart-toggle strong {
+        color: #111827;
+        font-size: 11px;
+    }
+
+    /* Closed state remains the compact payment strip. */
+    body > .flex.flex-1 > aside:last-child {
+        height: 102px;
+        min-height: 102px;
+        transition: height .22s ease, box-shadow .22s ease;
+        overflow: hidden;
+    }
+
+    /* Open state exposes the SAME original customer fields, cart, payment and checkout controls. */
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open {
+        top: 58px;
+        bottom: 0;
+        height: calc(100dvh - 58px) !important;
+        min-height: 0 !important;
+        overflow: hidden;
+        border-top: 1px solid #e5e7eb;
+        box-shadow: 0 -12px 35px rgba(0,0,0,.18);
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open > div:first-child {
+        display: block;
+        flex: 0 0 auto;
+        padding: 16px 48px 12px 14px;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #cart-container {
+        display: block;
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 12px 14px;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open > .p-6:last-child {
+        flex: 0 0 auto;
+        height: auto;
+        max-height: 46dvh;
+        overflow-y: auto;
+        align-items: stretch;
+        padding: 12px 14px calc(12px + env(safe-area-inset-bottom));
+        gap: 8px;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open > .p-6:last-child > .mb-4 {
+        width: 100%;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open > .p-6:last-child > .mb-4 > label {
+        display: block;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #checkout-actions {
+        width: 100%;
+        grid-template-columns: 1fr 1.35fr;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #checkout-actions button {
+        min-height: 44px;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box {
+        position: static;
+        width: 100%;
+        max-height: none;
+        transform: none;
+        box-shadow: none;
+    }
+
+    #mobile-cart-close {
+        position: absolute;
+        top: 10px;
+        right: 12px;
+        z-index: 5;
+        width: 34px;
+        height: 34px;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        background: #fff;
+        color: #6b7280;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #mobile-cart-close {
+        display: flex;
+    }
+
+    body.mobile-cart-is-open #mobile-cart-toggle {
+        display: none;
+    }
+
+    /* History is fully usable on narrow screens. */
+    #history-view {
+        padding-bottom: 24px;
+    }
+
+    #history-content > .flex {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    #history-search {
+        width: 100% !important;
+        max-width: none !important;
+    }
+
+    .history-info-box strong {
+        font-size: 11px;
+    }
+
+    .history-item-row {
+        padding: 10px 12px;
+    }
+}
+
+@media (max-width: 420px) {
+    #mobile-cart-toggle {
+        right: 8px;
+        bottom: 107px;
+        padding: 8px 10px;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open {
+        top: 58px;
+        height: calc(100dvh - 58px) !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open > .p-6:last-child {
+        max-height: 50dvh;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+}
+
+/* FINAL CLOSED MOBILE BILLING STRIP: keep payment + total + checkout visible. */
+@media (max-width: 767px) {
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 7px;
+        padding: 8px;
+        overflow: hidden;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .mb-4 {
+        display: block;
+        width: 112px;
+        flex: 0 0 112px;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .mb-4 > label {
+        display: none;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .mb-4 .grid {
+        height: 46px;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .mb-4 button {
+        min-width: 0;
+        padding: 7px 4px;
+        font-size: 9px;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .mb-4 #upi-qr-box {
+        display: none !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .space-y-2 {
+        display: flex;
+        flex: 1 1 auto;
+        min-width: 0;
+        margin: 0;
+        align-items: center;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .space-y-2 > div:last-child {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) #summary-total {
+        font-size: 17px;
+        white-space: nowrap;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) #checkout-actions {
+        display: grid;
+        width: 126px;
+        flex: 0 0 126px;
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) #checkout-actions button:first-child {
+        display: none;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) #checkout-actions #checkout-btn {
+        width: 100%;
+        min-height: 46px;
+        padding: 8px 5px;
+        font-size: 9px;
+    }
+}
+
+@media (max-width: 420px) {
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child {
+        gap: 5px;
+        padding: 7px;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) > .p-6:last-child > .mb-4 {
+        width: 104px;
+        flex-basis: 104px;
+    }
+
+    body > .flex.flex-1 > aside:last-child:not(.mobile-cart-open) #checkout-actions {
+        width: 118px;
+        flex-basis: 118px;
+    }
+}

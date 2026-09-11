@@ -1679,136 +1679,62 @@ body > .flex.flex-1 > aside:last-child {
 
 
 /* =========================================================
-   FASTBITE — MOBILE UPI CONTROLS FIX
-   Only affects UPI controls on mobile.
+   UPI MOBILE VISIBILITY FIX — ONLY UPI CONTROLS
    ========================================================= */
 @media (max-width: 767px) {
+    /* Keep the QR and both UPI actions reachable inside the mobile cart. */
     body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box {
-        display: block !important;
-        position: static !important;
-        width: 100% !important;
-        max-height: none !important;
-        overflow: visible !important;
-        transform: none !important;
-        box-shadow: none !important;
+        display: block;
+        position: static;
+        width: 100%;
+        max-height: none;
+        overflow: visible;
+        transform: none;
+        box-shadow: none;
     }
 
-    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) !important;
-        gap: 8px !important;
-        width: 100% !important;
-        margin-top: 10px !important;
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box > div {
+        width: 112px;
+        height: 112px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid button {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: 44px !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        white-space: nowrap !important;
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box > .grid {
+        display: grid;
+        grid-template-columns: 1fr 1.35fr;
+        gap: 8px;
+        position: sticky;
+        bottom: 0;
+        z-index: 30;
+        background: #fff;
+        padding-top: 8px;
     }
 
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box > .grid button {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        white-space: nowrap;
+    }
+
+    /* The confirmation modal always keeps Cancel + Payment Completed visible. */
     #upi-payment-modal {
-        overflow-y: auto !important;
-        padding: 12px !important;
-    }
-
-    #upi-payment-modal.hidden {
-        display: none !important;
+        overflow: auto;
     }
 
     #upi-payment-modal > div {
-        width: 100% !important;
-        max-width: 380px !important;
-        max-height: calc(100dvh - 24px) !important;
-        overflow-y: auto !important;
+        max-height: calc(100dvh - 24px);
+        overflow-y: auto;
     }
 
     #upi-payment-modal > div > .p-6 > .grid {
-        display: grid !important;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr) !important;
-        gap: 10px !important;
-        width: 100% !important;
-        margin-top: 14px !important;
-    }
-
-    #upi-payment-modal > div > .p-6 > .grid button {
-        display: flex !important;
-        align-items: center !important;
-        justify-content: center !important;
-        min-height: 46px !important;
-        visibility: visible !important;
-        opacity: 1 !important;
-        white-space: nowrap !important;
-    }
-}
-
-
-/* =========================================================
-   FASTBITE — UPI PANEL VISIBILITY + LIVE AMOUNT
-   Only fixes UPI payment presentation/visibility.
-   ========================================================= */
-#upi-qr-box {
-    max-height: 330px;
-    overflow-y: auto;
-}
-
-#upi-qr-box > div {
-    width: 128px !important;
-    height: 128px !important;
-}
-
-#upi-qr-box .grid {
-    position: sticky;
-    bottom: 0;
-    background: white;
-    padding-top: 8px;
-    padding-bottom: 2px;
-}
-
-#upi-qr-box .grid button {
-    min-height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: visible;
-    opacity: 1;
-}
-
-@media (max-width: 767px) {
-    #upi-qr-box > div {
-        width: 118px !important;
-        height: 118px !important;
-    }
-}
-
-/* FINAL UPI MOBILE VISIBILITY FIX */
-@media (max-width: 767px) {
-    body > .flex.flex-1 > aside:last-child.mobile-cart-open > .p-6:last-child {
-        max-height: 62dvh !important;
-        overflow-y: auto !important;
-        padding-bottom: calc(18px + env(safe-area-inset-bottom)) !important;
-    }
-    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box {
-        display: block !important;
-        overflow: visible !important;
-        max-height: none !important;
-    }
-    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid {
-        display: grid !important;
-        grid-template-columns: 1fr 1.35fr !important;
-        position: static !important;
-        margin-top: 14px !important;
-        padding: 0 !important;
-        background: transparent !important;
-    }
-    body > .flex.flex-1 > aside:last-child.mobile-cart-open #upi-qr-box .grid button {
-        display: flex !important;
-        min-height: 48px !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        position: sticky;
+        bottom: -1px;
+        z-index: 5;
+        background: #fff;
+        padding-top: 10px;
+        margin-top: 10px;
     }
 }

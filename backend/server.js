@@ -3,6 +3,7 @@ const session = require('express-session');
 const bcrypt = require('bcryptjs');
 const Database = require('better-sqlite3');
 const path = require('path');
+const fs = require('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,6 +19,13 @@ CREATE TABLE IF NOT EXISTS users (
   name TEXT NOT NULL,
   password_hash TEXT NOT NULL,
   role TEXT NOT NULL CHECK(role IN ('admin','cashier'))
+);
+CREATE TABLE IF NOT EXISTS menu_items (
+  id INTEGER PRIMARY KEY,
+  name TEXT NOT NULL,
+  price REAL NOT NULL,
+  category TEXT NOT NULL,
+  img TEXT NOT NULL
 );
 CREATE TABLE IF NOT EXISTS orders (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -38,6 +46,20 @@ if (db.prepare('SELECT COUNT(*) AS n FROM users').get().n === 0) {
   const add = db.prepare('INSERT INTO users (username,name,password_hash,role) VALUES (?,?,?,?)');
   add.run('admin','Rohit Admin',bcrypt.hashSync('admin123',10),'admin');
   add.run('cashier','FastBite Cashier',bcrypt.hashSync('cashier123',10),'cashier');
+}
+
+// Seed the menu from the original FastBite menu only when the database is empty.
+const menuCount = db.prepare('SELECT COUNT(*) AS n FROM menu_items').get().n;
+if (menuCount === 0) {
+  const seedPath = path.join(__dirname, 'menu-seed.json');
+  if (fs.existsSync(seedPath)) {
+    const seed = JSON.parse(fs.readFileSync(seedPath, 'utf8'));
+    const addMenu = db.prepare('INSERT INTO menu_items (id,name,price,category,img) VALUES (?,?,?,?,?)');
+    const seedTransaction = db.transaction(items => {
+      for (const item of items) addMenu.run(item.id, item.name, Number(item.price), item.category, item.img);
+    });
+    seedTransaction(seed);
+  }
 }
 
 app.use(express.json());
@@ -70,6 +92,46 @@ app.post('/api/login',(req,res)=>{
 app.get('/api/me',(req,res)=>{
   if(!req.session.user) return res.status(401).json({message:'Not logged in.'});
   res.json({user:req.session.user});
+});
+
+// Menu is readable by the POS so Admin changes are reflected automatically.
+app.get('/api/menu',loginRequired,(req,res)=>{
+  const items = db.prepare('SELECT id,name,price,category,img FROM menu_items ORDER BY id ASC').all();
+  res.json({items});
+});
+
+app.post('/api/menu',adminRequired,(req,res)=>{
+  const item = req.body || {};
+  const name = String(item.name || '').trim();
+  const category = String(item.category || '').trim();
+  const img = String(item.img || '').trim();
+  const price = Number(item.price);
+  if (!name || !category || !img || !Number.isFinite(price) || price < 0)
+    return res.status(400).json({message:'Name, price, category and image are required.'});
+  const nextId = db.prepare('SELECT COALESCE(MAX(id),0)+1 AS id FROM menu_items').get().id;
+  db.prepare('INSERT INTO menu_items (id,name,price,category,img) VALUES (?,?,?,?,?)').run(nextId,name,price,category,img);
+  res.status(201).json({item:{id:nextId,name,price,category,img}});
+});
+
+app.put('/api/menu/:id',adminRequired,(req,res)=>{
+  const id = Number(req.params.id);
+  const item = req.body || {};
+  const name = String(item.name || '').trim();
+  const category = String(item.category || '').trim();
+  const img = String(item.img || '').trim();
+  const price = Number(item.price);
+  if (!Number.isInteger(id) || !name || !category || !img || !Number.isFinite(price) || price < 0)
+    return res.status(400).json({message:'Invalid menu item.'});
+  const result = db.prepare('UPDATE menu_items SET name=?,price=?,category=?,img=? WHERE id=?').run(name,price,category,img,id);
+  if (!result.changes) return res.status(404).json({message:'Menu item not found.'});
+  res.json({item:{id,name,price,category,img}});
+});
+
+app.delete('/api/menu/:id',adminRequired,(req,res)=>{
+  const id = Number(req.params.id);
+  const result = db.prepare('DELETE FROM menu_items WHERE id=?').run(id);
+  if (!result.changes) return res.status(404).json({message:'Menu item not found.'});
+  res.json({message:'Menu item deleted.'});
 });
 
 app.post('/api/logout',(req,res)=>{

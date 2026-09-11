@@ -1,59 +1,59 @@
 
         // Constants & Data
-        const MENU_DATA = [
-            { id: 1, name: 'Aloo Tikki Burger', price: 65, category: 'Veg Burgers', img: 'assets/food-1.svg' },
-            { id: 2, name: 'Crispy Veggie Burger', price: 89, category: 'Veg Burgers', img: 'assets/food-2.svg' },
-            { id: 3, name: 'Spicy Mexican Burger', price: 110, category: 'Veg Burgers', img: 'assets/food-3.svg' },
-            { id: 4, name: 'Veg Maharaja Mac', price: 199, category: 'Veg Burgers', img: 'assets/food-4.svg' },
-            { id: 5, name: 'Double Patty Veg', price: 145, category: 'Veg Burgers', img: 'assets/food-5.svg' },
-            { id: 6, name: 'Sweet Corn Burger', price: 95, category: 'Veg Burgers', img: 'assets/food-6.svg' },
-            { id: 7, name: 'Classic Paneer Burger', price: 129, category: 'Paneer Burgers', img: 'assets/food-7.svg' },
-            { id: 8, name: 'Paneer Tikka Burger', price: 155, category: 'Paneer Burgers', img: 'assets/food-8.svg' },
-            { id: 9, name: 'Spicy Paneer Crunch', price: 165, category: 'Paneer Burgers', img: 'assets/food-9.svg' },
-            { id: 10, name: 'Tandoori Paneer Bun', price: 149, category: 'Paneer Burgers', img: 'assets/food-10.svg' },
-            { id: 11, name: 'Paneer Cheese Burst', price: 185, category: 'Paneer Burgers', img: 'assets/food-11.svg' },
-            { id: 12, name: 'Schezwan Paneer Burger', price: 139, category: 'Paneer Burgers', img: 'assets/food-12.svg' },
-            { id: 13, name: 'Margherita Pizza', price: 249, category: 'Veg Pizza', img: 'assets/food-13.svg' },
-            { id: 14, name: 'Farmhouse Pizza', price: 399, category: 'Veg Pizza', img: 'assets/food-14.svg' },
-            { id: 15, name: 'Peppy Paneer Pizza', price: 449, category: 'Veg Pizza', img: 'assets/food-15.svg' },
-            { id: 16, name: 'Corn & Cheese Pizza', price: 299, category: 'Veg Pizza', img: 'assets/food-16.svg' },
-            { id: 17, name: 'Veggie Supreme', price: 499, category: 'Veg Pizza', img: 'assets/food-17.svg' },
-            { id: 18, name: 'Tandoori Paneer Pizza', price: 479, category: 'Veg Pizza', img: 'assets/food-18.svg' },
-            { id: 19, name: 'Double Cheese Pizza', price: 349, category: 'Veg Pizza', img: 'assets/food-19.svg' },
-            { id: 20, name: 'Capsicum & Tomato Pizza', price: 269, category: 'Veg Pizza', img: 'assets/food-20.svg' },
-            { id: 21, name: 'Paneer Tikka Roll', price: 120, category: 'Rolls', img: 'assets/food-21.svg' },
-            { id: 22, name: 'Veg Kathi Roll', price: 80, category: 'Rolls', img: 'assets/food-22.svg' },
-            { id: 23, name: 'Mushroom Roll', price: 110, category: 'Rolls', img: 'assets/food-23.svg' },
-            { id: 24, name: 'Soya Chaap Roll', price: 130, category: 'Rolls', img: 'assets/food-24.svg' },
-            { id: 25, name: 'Cheese Corn Roll', price: 140, category: 'Rolls', img: 'assets/food-25.svg' },
-            { id: 26, name: 'Chilli Paneer Roll', price: 150, category: 'Rolls', img: 'assets/food-26.svg' },
-            { id: 27, name: 'Double Paneer Roll', price: 170, category: 'Rolls', img: 'assets/food-27.svg' },
-            { id: 28, name: 'Bombay Sandwich', price: 75, category: 'Sandwiches', img: 'assets/food-28.svg' },
-            { id: 29, name: 'Cheese Chutney Sandwich', price: 60, category: 'Sandwiches', img: 'assets/food-29.svg' },
-            { id: 30, name: 'Grilled Veg Sandwich', price: 95, category: 'Sandwiches', img: 'assets/food-30.svg' },
-            { id: 31, name: 'Paneer Club Sandwich', price: 145, category: 'Sandwiches', img: 'assets/food-31.svg' },
-            { id: 32, name: 'Corn & Mayo Sandwich', price: 85, category: 'Sandwiches', img: 'assets/food-32.svg' },
-            { id: 33, name: 'Aloo Masala Toast', price: 55, category: 'Sandwiches', img: 'assets/food-33.svg' },
-            { id: 34, name: 'Classic Salted Fries', price: 85, category: 'Fries & Sides', img: 'assets/food-34.svg' },
-            { id: 35, name: 'Peri Peri Fries', price: 110, category: 'Fries & Sides', img: 'assets/food-35.svg' },
-            { id: 36, name: 'Cheese Loaded Fries', price: 165, category: 'Fries & Sides', img: 'assets/food-36.svg' },
-            { id: 37, name: 'Veg Nuggets (8pc)', price: 120, category: 'Fries & Sides', img: 'assets/food-37.svg' },
-            { id: 38, name: 'Onion Rings', price: 105, category: 'Fries & Sides', img: 'assets/food-38.svg' },
-            { id: 39, name: 'Paneer Popcorn', price: 155, category: 'Fries & Sides', img: 'assets/food-39.svg' },
-            { id: 40, name: 'Potato Wedges', price: 115, category: 'Fries & Sides', img: 'assets/food-40.svg' },
-            { id: 41, name: 'Coca Cola 250ml', price: 30, category: 'Cold Drinks', img: 'assets/food-41.svg' },
-            { id: 42, name: 'Sprite 250ml', price: 30, category: 'Cold Drinks', img: 'assets/food-42.svg' },
-            { id: 43, name: 'Thums Up 250ml', price: 30, category: 'Cold Drinks', img: 'assets/food-43.svg' },
-            { id: 44, name: 'Fresh Lime Soda', price: 55, category: 'Cold Drinks', img: 'assets/food-44.svg' },
-            { id: 45, name: 'Classic Vanilla Shake', price: 110, category: 'Shakes', img: 'assets/food-45.svg' },
-            { id: 46, name: 'Cold Coffee', price: 95, category: 'Shakes', img: 'assets/food-46.svg' },
-            { id: 47, name: 'Chocolate Oreo Shake', price: 145, category: 'Shakes', img: 'assets/food-47.svg' },
-            { id: 48, name: 'Strawberry Shake', price: 130, category: 'Shakes', img: 'assets/food-48.svg' },
-            { id: 49, name: 'Choco Lava Cake', price: 99, category: 'Desserts', img: 'assets/food-49.svg' },
-            { id: 50, name: 'Vanilla Ice Cream', price: 45, category: 'Desserts', img: 'assets/food-50.svg' },
+        let MENU_DATA = [
+            { id: 1, name: 'Aloo Tikki Burger', price: 65, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop' },
+            { id: 2, name: 'Crispy Veggie Burger', price: 89, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1525059696034-476775a89271?w=400&h=300&fit=crop' },
+            { id: 3, name: 'Spicy Mexican Burger', price: 110, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&h=300&fit=crop' },
+            { id: 4, name: 'Veg Maharaja Mac', price: 199, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1499028344343-cd173ffc68a9?w=400&h=300&fit=crop' },
+            { id: 5, name: 'Double Patty Veg', price: 145, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=400&h=300&fit=crop' },
+            { id: 6, name: 'Sweet Corn Burger', price: 95, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1512152272829-e3139592d56f?w=400&h=300&fit=crop' },
+            { id: 7, name: 'Classic Paneer Burger', price: 129, category: 'Paneer Burgers', img: 'https://images.unsplash.com/photo-1460306423018-0356b3cb49a5?w=400&h=300&fit=crop' },
+            { id: 8, name: 'Paneer Tikka Burger', price: 155, category: 'Paneer Burgers', img: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400&h=300&fit=crop' },
+            { id: 9, name: 'Spicy Paneer Crunch', price: 165, category: 'Paneer Burgers', img: 'https://images.unsplash.com/photo-1553979459-d2229ba7433b?w=400&h=300&fit=crop' },
+            { id: 10, name: 'Tandoori Paneer Bun', price: 149, category: 'Paneer Burgers', img: 'https://images.unsplash.com/photo-1534790563335-bca4aa866179?w=400&h=300&fit=crop' },
+            { id: 11, name: 'Paneer Cheese Burst', price: 185, category: 'Paneer Burgers', img: 'https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&h=300&fit=crop' },
+            { id: 12, name: 'Schezwan Paneer Burger', price: 139, category: 'Paneer Burgers', img: 'https://images.unsplash.com/photo-1572802419224-296b0b00b6f7?w=400&h=300&fit=crop' },
+            { id: 13, name: 'Margherita Pizza', price: 249, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1574071318508-1cdbad80ad38?w=400&h=300&fit=crop' },
+            { id: 14, name: 'Farmhouse Pizza', price: 399, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400&h=300&fit=crop' },
+            { id: 15, name: 'Peppy Paneer Pizza', price: 449, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1534308983496-4fabb1a015ee?w=400&h=300&fit=crop' },
+            { id: 16, name: 'Corn & Cheese Pizza', price: 299, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1571407970349-bc81e7e96d47?w=400&h=300&fit=crop' },
+            { id: 17, name: 'Veggie Supreme', price: 499, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400&h=300&fit=crop' },
+            { id: 18, name: 'Tandoori Paneer Pizza', price: 479, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1593560708920-61dd98c46a4e?w=400&h=300&fit=crop' },
+            { id: 19, name: 'Double Cheese Pizza', price: 349, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1548365328-8b849e6f90e5?w=400&h=300&fit=crop' },
+            { id: 20, name: 'Capsicum & Tomato Pizza', price: 269, category: 'Veg Pizza', img: 'https://images.unsplash.com/photo-1574129624513-35f9922e9e1c?w=400&h=300&fit=crop' },
+            { id: 21, name: 'Paneer Tikka Roll', price: 120, category: 'Rolls', img: 'https://images.unsplash.com/photo-1626700051175-6818013e1d4f?w=400&h=300&fit=crop' },
+            { id: 22, name: 'Veg Kathi Roll', price: 80, category: 'Rolls', img: 'https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=400&h=300&fit=crop' },
+            { id: 23, name: 'Mushroom Roll', price: 110, category: 'Rolls', img: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400&h=300&fit=crop' },
+            { id: 24, name: 'Soya Chaap Roll', price: 130, category: 'Rolls', img: 'https://images.unsplash.com/photo-1628294895950-9805252327bc?w=400&h=300&fit=crop' },
+            { id: 25, name: 'Cheese Corn Roll', price: 140, category: 'Rolls', img: 'https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=400&h=300&fit=crop' },
+            { id: 26, name: 'Chilli Paneer Roll', price: 150, category: 'Rolls', img: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?w=400&h=300&fit=crop' },
+            { id: 27, name: 'Double Paneer Roll', price: 170, category: 'Rolls', img: 'https://images.unsplash.com/photo-1563379926898-05f4575a45d8?w=400&h=300&fit=crop' },
+            { id: 28, name: 'Bombay Sandwich', price: 75, category: 'Sandwiches', img: 'https://images.unsplash.com/photo-1528735602780-2552fd46c7af?w=400&h=300&fit=crop' },
+            { id: 29, name: 'Cheese Chutney Sandwich', price: 60, category: 'Sandwiches', img: 'https://images.unsplash.com/photo-1481070414801-51fd732d7184?w=400&h=300&fit=crop' },
+            { id: 30, name: 'Grilled Veg Sandwich', price: 95, category: 'Sandwiches', img: 'https://images.unsplash.com/photo-1553909489-cd47e0907980?w=400&h=300&fit=crop' },
+            { id: 31, name: 'Paneer Club Sandwich', price: 145, category: 'Sandwiches', img: 'https://images.unsplash.com/photo-1521305916504-4a1121188589?w=400&h=300&fit=crop' },
+            { id: 32, name: 'Corn & Mayo Sandwich', price: 85, category: 'Sandwiches', img: 'https://images.unsplash.com/photo-1539252554453-80ab65ce3586?w=400&h=300&fit=crop' },
+            { id: 33, name: 'Aloo Masala Toast', price: 55, category: 'Sandwiches', img: 'https://images.unsplash.com/photo-1550507992-eb63ffee0847?w=400&h=300&fit=crop' },
+            { id: 34, name: 'Classic Salted Fries', price: 85, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1630384066252-11e1edca55a4?w=400&h=300&fit=crop' },
+            { id: 35, name: 'Peri Peri Fries', price: 110, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1518013431117-eb1465fa5752?w=400&h=300&fit=crop' },
+            { id: 36, name: 'Cheese Loaded Fries', price: 165, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1576107232684-1279f390859f?w=400&h=300&fit=crop' },
+            { id: 37, name: 'Veg Nuggets (8pc)', price: 120, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1562967914-6cbb048ca391?w=400&h=300&fit=crop' },
+            { id: 38, name: 'Onion Rings', price: 105, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1639024471283-03518883512d?w=400&h=300&fit=crop' },
+            { id: 39, name: 'Paneer Popcorn', price: 155, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1601050690117-94f5f6fa8bd7?w=400&h=300&fit=crop' },
+            { id: 40, name: 'Potato Wedges', price: 115, category: 'Fries & Sides', img: 'https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop' },
+            { id: 41, name: 'Coca Cola 250ml', price: 30, category: 'Cold Drinks', img: 'https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=400&h=300&fit=crop' },
+            { id: 42, name: 'Sprite 250ml', price: 30, category: 'Cold Drinks', img: 'https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=400&h=300&fit=crop' },
+            { id: 43, name: 'Thums Up 250ml', price: 30, category: 'Cold Drinks', img: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=300&fit=crop' },
+            { id: 44, name: 'Fresh Lime Soda', price: 55, category: 'Cold Drinks', img: 'https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?w=400&h=300&fit=crop' },
+            { id: 45, name: 'Classic Vanilla Shake', price: 110, category: 'Shakes', img: 'https://images.unsplash.com/photo-1572490122747-3968b75cc699?w=400&h=300&fit=crop' },
+            { id: 46, name: 'Cold Coffee', price: 95, category: 'Shakes', img: 'https://images.unsplash.com/photo-1541167760496-162955ed8a9f?w=400&h=300&fit=crop' },
+            { id: 47, name: 'Chocolate Oreo Shake', price: 145, category: 'Shakes', img: 'https://images.unsplash.com/photo-1541592106381-b31e9677c0e5?w=400&h=300&fit=crop' },
+            { id: 48, name: 'Strawberry Shake', price: 130, category: 'Shakes', img: 'https://images.unsplash.com/photo-1551024506-0bccd828d307?w=400&h=300&fit=crop' },
+            { id: 49, name: 'Choco Lava Cake', price: 99, category: 'Desserts', img: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?w=400&h=300&fit=crop' },
+            { id: 50, name: 'Vanilla Ice Cream', price: 45, category: 'Desserts', img: 'https://images.unsplash.com/photo-1501443762994-82bd5dabb892?w=400&h=300&fit=crop' },
         ];
 
-        const CATEGORIES = ['All', 'Veg Burgers', 'Paneer Burgers', 'Veg Pizza', 'Rolls', 'Sandwiches', 'Fries & Sides', 'Cold Drinks', 'Shakes', 'Desserts'];
+        let CATEGORIES = ['All', 'Veg Burgers', 'Paneer Burgers', 'Veg Pizza', 'Rolls', 'Sandwiches', 'Fries & Sides', 'Cold Drinks', 'Shakes', 'Desserts'];
 
         // App State
         let cart = [];
@@ -71,11 +71,33 @@
         let showHistory = false;
 
         // Image Fallback Constant
-        const IMG_FALLBACK = 'assets/food-1.svg';
+        const IMG_FALLBACK = 'https://images.unsplash.com/photo-1493770348161-369560ae357d?w=400&h=300&fit=crop&q=60';
 
         // Initialize UI
-        function init() {
+        async function loadMenuFromBackend() {
+            try {
+                const response = await fetch('/api/menu', { credentials: 'include' });
+                if (!response.ok) return;
+                const data = await response.json();
+                if (Array.isArray(data.items) && data.items.length) {
+                    MENU_DATA = data.items.map(item => ({
+                        id: Number(item.id),
+                        name: String(item.name || ''),
+                        price: Number(item.price || 0),
+                        category: String(item.category || 'All'),
+                        img: String(item.img || IMG_FALLBACK)
+                    }));
+                    const categories = [...new Set(MENU_DATA.map(item => item.category).filter(Boolean))];
+                    CATEGORIES = ['All', ...categories.filter(c => c !== 'All')];
+                }
+            } catch (e) {
+                // Keep the original in-file menu as a safe fallback if the API is unavailable.
+            }
+        }
+
+        async function init() {
             currentBillNo = generateBillNo();
+            await loadMenuFromBackend();
             renderCategories();
             renderMenu();
             updateClock();
@@ -256,8 +278,6 @@
             if(billEl) billEl.innerText = `#${currentBillNo}`;
 
             const checkoutBtn = document.getElementById('checkout-btn');
-            updateUpiAmount();
-
             if (checkoutBtn) {
                 if (cart.length > 0) {
                     checkoutBtn.classList.remove('bg-gray-300', 'cursor-not-allowed');
@@ -269,33 +289,14 @@
             }
         }
 
-        function updateUpiAmount() {
-            const subtotal = cart.reduce((acc, item) => acc + item.price * item.qty, 0);
-            const total = subtotal + subtotal * 0.1;
-            const amount = `₹${total.toFixed(2)}`;
-            const inlineAmountEl = document.getElementById('upi-inline-amount');
-            const modalAmountEl = document.getElementById('upi-payment-amount');
-            if (inlineAmountEl) inlineAmountEl.textContent = amount;
-            if (modalAmountEl) modalAmountEl.textContent = amount;
-        }
-
         function setPayment(method) {
             paymentMethod = method;
-            if (method !== 'UPI') upiPaymentConfirmed = false;
-            updateUpiAmount();
             const cashBtn = document.getElementById('pay-cash');
             const upiBtn = document.getElementById('pay-upi');
             const qrBox = document.getElementById('upi-qr-box');
             if(cashBtn) cashBtn.className = method === 'Cash' ? 'py-2 text-xs font-bold rounded-lg transition-all bg-white text-orange-600 shadow-sm' : 'py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-700';
             if(upiBtn) upiBtn.className = method === 'UPI' ? 'py-2 text-xs font-bold rounded-lg transition-all bg-white text-orange-600 shadow-sm' : 'py-2 text-xs font-bold rounded-lg transition-all text-gray-500 hover:text-gray-700';
             if(qrBox) qrBox.classList.toggle('hidden', method !== 'UPI');
-            if (method === 'UPI') {
-                const aside = document.querySelector('body > .flex.flex-1 > aside:last-child');
-                if (window.innerWidth <= 767 && aside) {
-                    aside.classList.add('mobile-cart-open');
-                    document.body.classList.add('mobile-cart-is-open');
-                }
-            }
             const checkoutActions = document.getElementById('checkout-actions');
             if (checkoutActions) checkoutActions.classList.toggle('upi-sticky-actions', method === 'UPI');
         }

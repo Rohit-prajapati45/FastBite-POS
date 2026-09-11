@@ -1,13 +1,11 @@
-# FastBite POS — Final Mobile + Shared History Fix
+# FastBite POS
 
-This version keeps the existing FastBite POS UI, 3D login, menu, cart, payment, receipt and authentication flow, while fixing:
+FastBite POS keeps the existing POS UI and adds only:
 
-- Mobile cart access through a responsive cart drawer using the existing cart/payment controls.
-- Mobile payment + total + Complete Payment visibility in the bottom billing strip.
-- Admin Order History loaded from the backend so the same history is available across devices after login.
-- Expandable Order History cards showing customer name, mobile, payment method, date/time, ordered items, quantities, subtotal, GST and total.
-- Server-generated sequential bill numbers to avoid duplicate bill numbers across different devices.
-- Existing localStorage history remains only as a temporary fallback if the live API is unavailable.
+1. Order History order details: click an Order ID to expand its items, quantities and totals.
+2. A separate protected Admin Management page at `/admin.html` for menu changes and order history.
+
+Admin menu changes are stored in the backend database and loaded by the POS automatically.
 
 ## Run locally
 
@@ -17,12 +15,10 @@ npm install
 npm start
 ```
 
-Then open `http://localhost:3000`.
+Open: `http://localhost:3000`
 
-## Render
+Admin Management: `http://localhost:3000/admin.html`
 
-Use the same backend start command already used by the deployed service:
-
-```bash
-cd backend && npm start
-```
+Default accounts:
+- Admin: `admin` / `admin123`
+- Cashier: `cashier` / `cashier123`

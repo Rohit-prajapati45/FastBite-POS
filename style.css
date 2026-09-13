@@ -81,8 +81,8 @@ button {
     height: 100dvh;
     overflow: hidden;
     background:
-        radial-gradient(circle at 50% 25%, #fff7ed 0%, transparent 38%),
-        linear-gradient(135deg, #111827, #1f2937 55%, #111827);
+        radial-gradient(circle at 50% 28%, rgba(119, 49, 12, .28) 0%, transparent 36%),
+        linear-gradient(135deg, #050505, #120b07 55%, #050505);
 }
 
 .fb3d-world {
@@ -209,6 +209,11 @@ button {
     filter: drop-shadow(0 45px 45px rgba(0,0,0,0.35));
 }
 
+/* The terminal is centered by its existing flex-based scene. */
+.fb3d-world > .fb3d-terminal {
+    margin: auto;
+}
+
 .fb3d-terminal-top {
     height: 42px;
     padding: 0 18px;
@@ -249,10 +254,11 @@ button {
     position: relative;
     overflow: hidden;
     border-radius: 12px;
-    background: #fff;
+    background: linear-gradient(145deg, #17110e, #080706 72%);
     box-shadow:
-        inset 0 0 0 1px rgba(0,0,0,0.08),
-        0 5px 20px rgba(0,0,0,0.3);
+        inset 0 0 0 1px rgba(255,255,255,0.06),
+        inset 0 0 45px rgba(0,0,0,.55),
+        0 5px 20px rgba(0,0,0,0.5);
 }
 
 .fb3d-screen-depth {
@@ -260,8 +266,8 @@ button {
     inset: 0;
     pointer-events: none;
     background:
-        linear-gradient(110deg, rgba(255,255,255,0.4), transparent 25%),
-        linear-gradient(180deg, rgba(249,115,22,0.03), transparent);
+        linear-gradient(110deg, rgba(255,255,255,0.10), transparent 25%),
+        linear-gradient(180deg, rgba(249,115,22,0.12), transparent);
 }
 
 .fb3d-screen-ui {
@@ -295,7 +301,7 @@ button {
 
 .fb3d-screen-brand strong {
     display: block;
-    color: #1f2937;
+    color: #f9fafb;
     font-size: 17px;
     line-height: 1;
     letter-spacing: -0.02em;
@@ -308,7 +314,7 @@ button {
 .fb3d-screen-brand small {
     display: block;
     margin-top: 4px;
-    color: #9ca3af;
+    color: #8b817c;
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 0.15em;
@@ -335,7 +341,7 @@ button {
 
 .fb3d-screen-ui h1 {
     margin: 0;
-    color: #111827;
+    color: #fffaf5;
     font-size: 28px;
     line-height: 1.15;
     letter-spacing: -0.04em;
@@ -343,7 +349,7 @@ button {
 
 .fb3d-subtitle {
     margin: 7px 0 25px;
-    color: #6b7280;
+    color: #8b817c;
     font-size: 11px;
 }
 
@@ -358,7 +364,7 @@ button {
 .fb3d-field label {
     display: block;
     margin-bottom: 6px;
-    color: #9ca3af;
+    color: #948984;
     font-size: 8px;
     font-weight: 800;
     letter-spacing: 0.13em;
@@ -373,7 +379,7 @@ button {
 .fb3d-input > i {
     position: absolute;
     left: 13px;
-    color: #9ca3af;
+    color: #8b817c;
     font-size: 12px;
     pointer-events: none;
 }
@@ -382,9 +388,9 @@ button {
     width: 100%;
     height: 44px;
     padding: 0 42px;
-    color: #1f2937;
-    background: #f9fafb;
-    border: 1px solid #e5e7eb;
+    color: #f9fafb;
+    background: rgba(255,255,255,.045);
+    border: 1px solid rgba(255,255,255,.12);
     border-radius: 10px;
     outline: none;
     font-size: 11px;
@@ -392,7 +398,7 @@ button {
 }
 
 .fb3d-input input:focus {
-    background: white;
+    background: rgba(255,255,255,.075);
     border-color: #f97316;
     box-shadow: 0 0 0 3px rgba(249,115,22,0.1);
 }
@@ -402,7 +408,7 @@ button {
     right: 11px;
     border: 0;
     background: transparent;
-    color: #9ca3af;
+    color: #8b817c;
     padding: 5px;
 }
 
@@ -441,8 +447,8 @@ button {
     justify-content: space-between;
     margin-top: 23px;
     padding-top: 14px;
-    border-top: 1px solid #f3f4f6;
-    color: #9ca3af;
+    border-top: 1px solid rgba(255,255,255,.08);
+    color: #756b66;
     font-size: 7px;
     font-weight: 700;
     letter-spacing: 0.08em;
@@ -489,6 +495,53 @@ button {
     border-radius: 0 0 22px 22px;
     border: 1px solid #4b5563;
     transform: translateZ(-8px);
+}
+
+/* While UPI is active, the existing billing sidebar becomes a compact payment
+   view so the QR, amount and both actions always fit in the visible viewport. */
+body > .flex.flex-1 > aside:last-child.upi-payment-active > div:first-child,
+body > .flex.flex-1 > aside:last-child.upi-payment-active #cart-container,
+body > .flex.flex-1 > aside:last-child.upi-payment-active > div.p-6.bg-gray-50 > .space-y-2,
+body > .flex.flex-1 > aside:last-child.upi-payment-active #checkout-actions {
+    display: none !important;
+}
+
+body > .flex.flex-1 > aside:last-child.upi-payment-active > div.p-6.bg-gray-50 {
+    display: flex !important;
+    flex: 1 1 auto;
+    min-height: 0;
+    max-height: none !important;
+    flex-direction: column;
+    padding: 20px;
+    overflow: hidden !important;
+}
+
+body > .flex.flex-1 > aside:last-child.upi-payment-active > div.p-6.bg-gray-50 > .mb-4 {
+    display: flex !important;
+    flex: 1 1 auto;
+    flex-direction: column;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+body > .flex.flex-1 > aside:last-child.upi-payment-active > div.p-6.bg-gray-50 > .mb-4 > label {
+    display: block !important;
+}
+
+body > .flex.flex-1 > aside:last-child.upi-payment-active #upi-qr-box {
+    display: flex !important;
+    flex: 1 1 auto;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 14px;
+    max-height: none !important;
+    overflow: hidden !important;
+}
+
+body > .flex.flex-1 > aside:last-child.upi-payment-active #upi-qr-box > .grid {
+    position: static !important;
+    margin-top: auto;
+    padding-top: 12px;
 }
 
 /* ---------- BURGER ---------- */
@@ -1236,6 +1289,52 @@ body > .flex.flex-1 > aside:last-child {
 
     .fb3d-floor-grid {
         opacity: 0.06;
+    }
+}
+
+/* UPI is a self-contained payment view on a phone: its QR, amount and both
+   actions are displayed together without requiring the cashier to scroll. */
+@media (max-width: 767px) {
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active > div:first-child,
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active #cart-container,
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active > .p-6:last-child > .space-y-2,
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active #checkout-actions {
+        display: none !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active > .p-6:last-child {
+        display: flex !important;
+        flex-direction: column;
+        height: calc(100dvh - 58px) !important;
+        max-height: none !important;
+        padding: 16px 14px calc(16px + env(safe-area-inset-bottom));
+        overflow: hidden !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active > .p-6:last-child > .mb-4 {
+        display: flex !important;
+        flex: 1 1 auto;
+        flex-direction: column;
+        width: 100% !important;
+        margin: 0 !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active > .p-6:last-child > .mb-4 > label {
+        display: block !important;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active #upi-qr-box {
+        display: block !important;
+        flex: 1 1 auto;
+        margin-top: 12px;
+        padding: 14px;
+        overflow: hidden;
+    }
+
+    body > .flex.flex-1 > aside:last-child.mobile-cart-open.upi-payment-active #upi-qr-box > .grid {
+        position: static !important;
+        margin-top: auto;
+        padding-top: 12px;
     }
 }
 

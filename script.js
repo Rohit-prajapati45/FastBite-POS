@@ -1,6 +1,6 @@
 
         // Constants & Data
-        const MENU_DATA = [
+        let MENU_DATA = [
             { id: 1, name: 'Aloo Tikki Burger', price: 65, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400&h=300&fit=crop' },
             { id: 2, name: 'Crispy Veggie Burger', price: 89, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1525059696034-476775a89271?w=400&h=300&fit=crop' },
             { id: 3, name: 'Spicy Mexican Burger', price: 110, category: 'Veg Burgers', img: 'https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=400&h=300&fit=crop' },
@@ -53,7 +53,7 @@
             { id: 50, name: 'Vanilla Ice Cream', price: 45, category: 'Desserts', img: 'https://images.unsplash.com/photo-1501443762994-82bd5dabb892?w=400&h=300&fit=crop' },
         ];
 
-        const CATEGORIES = ['All', 'Veg Burgers', 'Paneer Burgers', 'Veg Pizza', 'Rolls', 'Sandwiches', 'Fries & Sides', 'Cold Drinks', 'Shakes', 'Desserts'];
+        let CATEGORIES = ['All', 'Veg Burgers', 'Paneer Burgers', 'Veg Pizza', 'Rolls', 'Sandwiches', 'Fries & Sides', 'Cold Drinks', 'Shakes', 'Desserts'];
 
         // App State
         let cart = [];
@@ -78,10 +78,31 @@
             currentBillNo = generateBillNo();
             renderCategories();
             renderMenu();
+            loadSharedMenu();
             updateClock();
             setInterval(updateClock, 1000);
+            setInterval(loadSharedMenu, 30000);
+            window.addEventListener('focus', loadSharedMenu);
             updateCartUI();
             checkAdminStatus();
+        }
+
+        // The POS retains its bundled menu as an offline fallback. When the
+        // server is available, it uses the admin-managed menu automatically.
+        async function loadSharedMenu() {
+            try {
+                const response = await fetch('/api/menu', { credentials: 'include' });
+                const data = await response.json().catch(() => ({}));
+                if (!response.ok || !Array.isArray(data.items)) return;
+                MENU_DATA = data.items;
+                const menuCategories = [...new Set(MENU_DATA.map(item => item.category).filter(Boolean))];
+                CATEGORIES = ['All', ...menuCategories];
+                if (!CATEGORIES.includes(activeCategory)) activeCategory = 'All';
+                renderCategories();
+                renderMenu();
+            } catch (e) {
+                // Keep the existing in-page menu functional if the API is down.
+            }
         }
 
         // Logic Functions
@@ -277,6 +298,14 @@
             if(qrBox) qrBox.classList.toggle('hidden', method !== 'UPI');
             const checkoutActions = document.getElementById('checkout-actions');
             if (checkoutActions) checkoutActions.classList.toggle('upi-sticky-actions', method === 'UPI');
+            const billingPanel = document.querySelector('body > .flex.flex-1 > aside:last-child');
+            if (billingPanel) {
+                billingPanel.classList.toggle('upi-payment-active', method === 'UPI');
+                if (method === 'UPI' && window.matchMedia('(max-width: 767px)').matches) {
+                    billingPanel.classList.add('mobile-cart-open');
+                    document.body.classList.add('mobile-cart-is-open');
+                }
+            }
         }
 
         function validateInput(type) {
@@ -544,7 +573,7 @@
             } else {
                 loginCard.classList.remove('hidden');
                 historyContent.classList.add('hidden');
-                logoutBtn.classList.add('hidden');
+                logoutBtn.classList.toggle('hidden', !currentUser);
                 adminBtn.innerHTML = '<i class="fas fa-lock mr-2"></i>Order History';
             }
         }
@@ -698,6 +727,11 @@
                 currentUser = data.user;
                 isAdmin = currentUser.role === 'admin';
 
+                if (currentUser.username === 'rohit') {
+                    window.setTimeout(() => window.location.assign('/admin'), 250);
+                    return;
+                }
+
                 if (login) login.classList.add('fb3d-success');
                 setTimeout(enterAppAfterLogin, 650);
             } catch (error) {
@@ -726,6 +760,10 @@
                 const data = await response.json();
                 currentUser = data.user;
                 isAdmin = currentUser.role === 'admin';
+                if (currentUser.username === 'rohit') {
+                    window.location.replace('/admin');
+                    return;
+                }
                 enterAppAfterLogin();
             } catch (error) {
                 showAppLogin();
@@ -811,7 +849,7 @@
                     const ry = (x - 0.5) * 9;
                     world.style.transform = `rotateX(${rx * .35}deg) rotateY(${ry * .35}deg)`;
                     if (!login.classList.contains('fb3d-auth')) {
-                        terminal.style.transform = `translate(-50%,-48%) rotateX(${7 + rx * .28}deg) rotateY(${-7 + ry * .32}deg) translateZ(70px)`;
+                        terminal.style.transform = `rotateX(${7 + rx * .28}deg) rotateY(${-7 + ry * .32}deg) translateZ(70px)`;
                     }
                 };
                 window.addEventListener('mousemove', e => move(e.clientX / window.innerWidth, e.clientY / window.innerHeight), {passive:true});

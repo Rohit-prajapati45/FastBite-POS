@@ -60,7 +60,6 @@
         let activeCategory = 'All';
         let searchQuery = '';
         let paymentMethod = 'Cash';
-        let upiPaymentConfirmed = false;
         let orderHistory = [];
         let currentCompletedOrder = null;
         let historyLoaded = false;
@@ -276,6 +275,13 @@
             if(totalEl) totalEl.innerText = `₹${total.toFixed(2)}`;
             if(billEl) billEl.innerText = `#${currentBillNo}`;
 
+            // Keep both UPI amount displays in sync with the same final total
+            // shown to the cashier, including after every cart edit.
+            const upiInlineAmount = document.getElementById('upi-inline-amount');
+            const upiModalAmount = document.getElementById('upi-payment-amount');
+            if (upiInlineAmount) upiInlineAmount.textContent = `₹${total.toFixed(2)}`;
+            if (upiModalAmount) upiModalAmount.textContent = `₹${total.toFixed(2)}`;
+
             const checkoutBtn = document.getElementById('checkout-btn');
             if (checkoutBtn) {
                 if (cart.length > 0) {
@@ -368,9 +374,9 @@
             const inlineAmountEl = document.getElementById('upi-inline-amount');
             if (inlineAmountEl) inlineAmountEl.textContent = `₹${total.toFixed(2)}`;
 
-            // UPI uses an explicit confirmation step. The demo QR cannot verify
-            // a real bank transaction, so the cashier confirms it manually.
-            if (paymentMethod === 'UPI' && !upiPaymentConfirmed) {
+            // The demo QR has no payment provider to verify a real transaction.
+            // Keep the order out of paid checkout until a verified gateway flow exists.
+            if (paymentMethod === 'UPI') {
                 const amountEl = document.getElementById('upi-payment-amount');
                 const modal = document.getElementById('upi-payment-modal');
                 if (amountEl) amountEl.textContent = `₹${total.toFixed(2)}`;
@@ -429,7 +435,6 @@
         }
 
         function cancelUpiPayment() {
-            upiPaymentConfirmed = false;
             const modal = document.getElementById('upi-payment-modal');
             const qrBox = document.getElementById('upi-qr-box');
             if (modal) modal.classList.add('hidden');
@@ -438,11 +443,16 @@
         }
 
         async function completeUpiPayment() {
-            upiPaymentConfirmed = true;
             const modal = document.getElementById('upi-payment-modal');
-            if (modal) modal.classList.add('hidden');
-            await processPayment();
-            upiPaymentConfirmed = false;
+            // The inline UPI action opens the confirmation step. The demo QR
+            // has no payment provider behind it, so a click in the modal must
+            // never be treated as verification or save an order as paid.
+            if (modal && modal.classList.contains('hidden')) {
+                await processPayment();
+                return;
+            }
+
+            alert('This demo UPI QR cannot verify a transaction. No UPI payment has been recorded.');
         }
 
         function sendBillToCustomer() {
